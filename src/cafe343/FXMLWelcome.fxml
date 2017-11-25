@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #99ccff;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="cafe343.FXMLWelcomeController">
+   <children>
+      <Label layoutX="346.0" layoutY="58.0" prefHeight="238.0" prefWidth="333.0" text="Welcome!" textAlignment="CENTER">
+         <font>
+            <Font name="Sitka Text" size="72.0" />
+         </font>
+      </Label>
+      <Button fx:id="continueButton" layoutX="387.0" layoutY="504.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="142.0" prefWidth="250.0" text="Continue">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" offsetX="3.0" offsetY="3.0" />
+         </effect>
+      </Button>
+   </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</AnchorPane>
