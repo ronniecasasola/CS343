@@ -7,14 +7,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #99ccff;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="cafe343.FXMLWelcomeController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #99ccff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe343.FXMLWelcomeController">
    <children>
       <Label layoutX="346.0" layoutY="58.0" prefHeight="238.0" prefWidth="333.0" text="Welcome!" textAlignment="CENTER">
          <font>
             <Font name="Sitka Text" size="72.0" />
          </font>
       </Label>
-      <Button fx:id="continueButton" layoutX="387.0" layoutY="504.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="142.0" prefWidth="250.0" text="Continue">
+      <Button fx:id="customerButton" layoutX="387.0" layoutY="504.0" mnemonicParsing="false" onAction="#handleCustomerButtonAction" prefHeight="142.0" prefWidth="250.0" text="Customer">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" offsetX="3.0" offsetY="3.0" />
+         </effect>
+      </Button>
+      <Button fx:id="EmployeeButton" layoutX="387.0" layoutY="313.0" mnemonicParsing="false" onAction="#handleEmployeeButtonAction" prefHeight="142.0" prefWidth="250.0" text="Employee">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" offsetX="3.0" offsetY="3.0" />
          </effect>
