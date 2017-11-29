@@ -42,6 +42,7 @@ public class CustomerMenuController implements Initializable {
 
     @FXML
     private void handleEntreesButtonAction(ActionEvent event) {
+        
     }
 
     @FXML
@@ -56,6 +57,7 @@ public class CustomerMenuController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(orderCartScene);
         window.show();
+        
     }
     
 }

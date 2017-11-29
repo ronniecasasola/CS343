@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -17,14 +18,17 @@ import javafx.stage.Stage;
  */
 public class WelcomeScreen extends Application {
     
+    
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLWelcome.fxml"));
+    public void start(Stage primarystage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
         
         Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
+        primarystage.setTitle("Welcome to Cafe 343");
+        primarystage.setResizable(false); //Prevents user from resizing the window
+        primarystage.getIcons().add(new Image("resources/application_icon.png"));
+        primarystage.setScene(scene);
+        primarystage.show();
     }
 
     /**

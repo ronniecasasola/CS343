@@ -23,17 +23,13 @@ import javafx.stage.Stage;
  *
  * @author artur
  */
-public class FXMLWelcomeController implements Initializable {
+public class WelcomeController implements Initializable {
 
     @FXML
     private Button customerButton;
     @FXML
     private Button EmployeeButton;
     
-    
-   // private void handleButtonAction(ActionEvent event) {
-   //     System.out.println("You clicked Employee!");
-   // }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -42,10 +38,10 @@ public class FXMLWelcomeController implements Initializable {
 
     @FXML
     private void handleCustomerButtonAction(ActionEvent event) throws IOException {
-       // System.out.println("You clicked Customer!");
         Parent customerMenuParent = FXMLLoader.load(getClass().getResource("CustomerMenu.fxml"));
         Scene customerMenuScene = new Scene(customerMenuParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setResizable(false);
         window.setScene(customerMenuScene);
         window.show();
     }
