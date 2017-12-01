@@ -12,21 +12,44 @@ import java.util.*;
 public class Customer 
 {
     private int tableNumber; //table number of the customer
-    private int numberOfPeople; //number of people in this table
-    private String seatedTime; //seated time for this customer
-    private ArrayList<Order> orders = new ArrayList<Order>(); //arraylist of orders
+//    private int numberOfPeople; //number of people in this table
+//    private String seatedTime; //seated time for this customer
+    private ArrayList<menuItem> orders;//arraylist of orders
     private int total; //total amount this table has spent
     
-    public Customer(int tableNumber, int numberOfPeople, String seatedTime)
+    public Customer(int tableNumber)
     {
         this.tableNumber = tableNumber;
-        this.numberOfPeople = numberOfPeople;
-        this.seatedTime = seatedTime;
+        orders = new ArrayList<menuItem>(); 
+        total = 0;
     }
     
-    public void makeOrder(menuItem item, String note)
+    public Customer()
     {
-        
+        this.tableNumber = 0;
+        orders = null;
+        total = -1;
+    }
+    
+    public void makeOrder(menuItem item)
+    {
+        orders.add(item);
+        total += item.getPrice();
+    }
+    
+    public ArrayList<menuItem> viewHistory()
+    {
+        return orders;
+    }
+    
+    public double splitByPeople(int numberOfPeople)
+    {
+        return total/numberOfPeople;
+    }
+    
+    public int callServer()
+    {
+        return tableNumber;
     }
     
 }
