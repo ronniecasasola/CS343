@@ -50,8 +50,11 @@ public class WelcomeController implements Initializable {
     }
 
     @FXML
-    private void handleEmployeeButtonAction(ActionEvent event) {
-        System.out.println("You clicked Employee!");
+    private void handleEmployeeButtonAction(ActionEvent event) throws IOException {
+        Parent customerMenuParent = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Scene customerMenuScene = new Scene(customerMenuParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(customerMenuScene);
+        window.show();
     }
-    
 }
