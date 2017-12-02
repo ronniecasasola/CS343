@@ -16,47 +16,54 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
+ * FXML Controller class
  *
  * @author artur
  */
-public class WelcomeController implements Initializable {
+public class OrderHistoryController implements Initializable {
 
     @FXML
-    private Button customerButton;
+    private Button menuButton;
     @FXML
-    private Button EmployeeButton;
-    
-    
+    private Button checkout;
+    @FXML
+    private Button serverButton;
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
 
     @FXML
-    private void handleCustomerButtonAction(ActionEvent event) throws IOException {
-        Parent customerMenuParent = FXMLLoader.load(getClass().getResource("CustomerMenu.fxml"));
-        Scene customerMenuScene = new Scene(customerMenuParent);
+    private void handleMenuButton(ActionEvent event) throws IOException {
+        Parent Parent = FXMLLoader.load(getClass().getResource("CustomerMenu.fxml"));
+        Scene nextScene = new Scene(Parent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setResizable(false);
-        window.setScene(customerMenuScene);
+        window.setScene(nextScene);
         window.setTitle("Customer Menu");
-        window.getIcons().add(new Image("resources/application_icon.png"));
         window.show();
     }
 
     @FXML
-    private void handleEmployeeButtonAction(ActionEvent event) throws IOException {
-        Parent customerMenuParent = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        Scene customerMenuScene = new Scene(customerMenuParent);
+    private void handleCheckoutButton(ActionEvent event) throws IOException {
+        Parent Parent = FXMLLoader.load(getClass().getResource("CheckOut.fxml"));
+        Scene nextScene = new Scene(Parent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setResizable(false); 
-        window.setScene(customerMenuScene);
-        window.setTitle("Employee Login");
+        window.setResizable(false);
+        window.setScene(nextScene);
+        window.setTitle("Check Out");
         window.show();
     }
+    
+    @FXML
+    private void handleServerButton(ActionEvent event) {
+    }
+    
 }

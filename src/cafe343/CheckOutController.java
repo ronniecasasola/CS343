@@ -16,26 +16,29 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author LimSt
+ * @author artur
  */
-public class LoginController implements Initializable {
+public class CheckOutController implements Initializable {
 
     @FXML
-    private TextField userText;
+    private Button menuButton;
     @FXML
-    private TextField passText;
+    private Button serverButton;
     @FXML
-    private Button loginButton;
+    private Button splitPeople;
     @FXML
-    private Button clearButton;
+    private Button splitItemButton;
     @FXML
-    private Button returnButton;
+    private TextField numberOfPeopleTextField;
 
     /**
      * Initializes the controller class.
@@ -44,25 +47,28 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
     @FXML
-    private void loginButtonEvt(ActionEvent event){
-        System.out.println("Login Button was clicked");
-    }
-    @FXML
-    private void clearButtonEvt(ActionEvent event){
-        userText.setText("");
-        passText.setText("");
-    }
-    
-    @FXML
-    private void returnButtonEvt(ActionEvent event) throws IOException {
-        Parent customerMenuParent = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
-        Scene customerMenuScene = new Scene(customerMenuParent);
+    private void handleMenuButton(ActionEvent event) throws IOException {
+        Parent Parent = FXMLLoader.load(getClass().getResource("CustomerMenu.fxml"));
+        Scene nextScene = new Scene(Parent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setResizable(false);
-        window.setTitle("Welcome to Cafe 343");
-        window.setScene(customerMenuScene);
+        window.setScene(nextScene);
+        window.setTitle("Customer Menu");
         window.show();
+    }
+
+    @FXML
+    private void handleServerButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleSplitPeople(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleSplitItemButton(ActionEvent event) {
     }
     
 }
