@@ -125,14 +125,14 @@ public class EmployeeMenuController implements Initializable {
                 && rowIndex <= gridPaneTables.getRowConstraints().size() - 1){
 
             //Menu Items for Split Menu Button
-            MenuItem menuItemAddOrder = new MenuItem("Add Order");
-            MenuItem menuItemSetAvailable = new MenuItem("Set Available");
-            MenuItem menuItemSetUnavailable = new MenuItem("Set Unavailable");
-            MenuItem menuItemSetBooked = new MenuItem("Set Booked");
+            MenuItem menuObjectAddOrder = new MenuItem("Add Order");
+            MenuItem menuObjectSetAvailable = new MenuItem("Set Available");
+            MenuItem menuObjectSetUnavailable = new MenuItem("Set Unavailable");
+            MenuItem menuObjectSetBooked = new MenuItem("Set Booked");
 
             //Initializing Button for GridPane.
-            final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuItemAddOrder, menuItemSetAvailable,
-                                                                    menuItemSetUnavailable, menuItemSetBooked);
+            final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuObjectAddOrder, menuObjectSetAvailable,
+                                                                    menuObjectSetUnavailable, menuObjectSetBooked);
             //Setting appearance of the table buttons.
             splitMenuButtonTable.setText("Table " + tableID);
             splitMenuButtonTable.setGraphic(new ImageView(imageTableIcon));
@@ -151,7 +151,7 @@ public class EmployeeMenuController implements Initializable {
                 
             });
 
-            menuItemAddOrder.setOnAction(event -> {
+            menuObjectAddOrder.setOnAction(event -> {
                 //Creating the Add Order Dialog.
                 Dialog addOrderDialog = new Dialog();
                 addOrderDialog.setTitle("Add Order");
@@ -167,17 +167,17 @@ public class EmployeeMenuController implements Initializable {
                 gridPane.setVgap(15);
                 gridPane.setPadding(new Insets(20, 150, 10, 10));
 
-                //ComboBox for Meal Name.
-                ComboBox<String> comboBoxMealName = new ComboBox<>();
-                comboBoxMealName.setPrefWidth(150);
-                //Adding Meal Names to ComboBox.
-                comboBoxMealName.getItems().addAll(Meal.fillComboBoxMeal());
-                comboBoxMealName.getSelectionModel().selectFirst();
-                comboBoxMealName.setOnMousePressed(event1 -> {
-                    //When the ComboBox is clicked, delete and add Meal Names again to update changes.
-                    comboBoxMealName.getItems().clear();
-                    comboBoxMealName.getItems().addAll(Meal.fillComboBoxMeal());
-                    comboBoxMealName.getSelectionModel().selectFirst();
+                //ComboBox for MenuObjects Name.
+                ComboBox<String> comboBoxMenuObjectsName = new ComboBox<>();
+                comboBoxMenuObjectsName.setPrefWidth(150);
+                //Adding MenuObjects Names to ComboBox.
+                comboBoxMenuObjectsName.getItems().addAll(MenuObject.fillComboBoxMeal());
+                comboBoxMenuObjectsName.getSelectionModel().selectFirst();
+                comboBoxMenuObjectsName.setOnMousePressed(event1 -> {
+                    //When the ComboBox is clicked, delete and add MenuObjects Names again to update changes.
+                    comboBoxMenuObjectsName.getItems().clear();
+                    comboBoxMenuObjectsName.getItems().addAll(MenuObject.fillComboBoxMeal());
+                    comboBoxMenuObjectsName.getSelectionModel().selectFirst();
                 });
 
                 //TextField for TableID.
@@ -189,7 +189,7 @@ public class EmployeeMenuController implements Initializable {
 
                 //Adding Nodes to GridPane.
                 gridPane.add(new Label("Meal"), 1, 0);
-                gridPane.add(comboBoxMealName, 0, 0);
+                gridPane.add(comboBoxMenuObjectsName, 0, 0);
                 gridPane.add(new Label("Table"),1,1);
                 gridPane.add(textFieldTableID,0,1);
 
@@ -207,8 +207,8 @@ public class EmployeeMenuController implements Initializable {
 
                     //Order TableID
                     String tableID = textFieldTableID.getText();
-                    //Order Meal Name
-                    String mealName = comboBoxMealName.getValue();
+                    //Order MenuObjects Name
+                    String menuObjectName = comboBoxMenuObjectsName.getValue();
                     //Order Date
                     String orderDate = String.valueOf(LocalDateTime.now());
 
@@ -229,11 +229,11 @@ public class EmployeeMenuController implements Initializable {
                 }
             });
 
-            menuItemSetAvailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;"));
+            menuObjectSetAvailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;"));
 
-            menuItemSetUnavailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
+            menuObjectSetUnavailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
 
-            menuItemSetBooked.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FFFF00;"));
+            menuObjectSetBooked.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FFFF00;"));
 
             //Adding the created Button to GridPane and incrementing columnIndex.
             gridPaneTables.add(splitMenuButtonTable,columnIndex,rowIndex);
@@ -282,14 +282,14 @@ public class EmployeeMenuController implements Initializable {
                     && rowIndex <= gridPaneTables.getRowConstraints().size() - 1) {
 
                 //Menu Items for Split Menu Button
-                MenuItem menuItemAddOrder = new MenuItem("Add Order");
-                MenuItem menuItemSetAvailable = new MenuItem("Set Available");
-                MenuItem menuItemSetUnavailable = new MenuItem("Set Unavailable");
-                MenuItem menuItemSetBooked = new MenuItem("Set Booked");
+                MenuItem menuObjectAddOrder = new MenuItem("Add Order");
+                MenuItem menuObjectSetAvailable = new MenuItem("Set Available");
+                MenuItem menuObjectSetUnavailable = new MenuItem("Set Unavailable");
+                MenuItem menuObjectSetBooked = new MenuItem("Set Booked");
 
                 //Initializing Button for GridPane.
-                final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuItemAddOrder, menuItemSetAvailable,
-                                                                                menuItemSetUnavailable, menuItemSetBooked);
+                final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuObjectAddOrder, menuObjectSetAvailable,
+                                                                                menuObjectSetUnavailable, menuObjectSetBooked);
                 //Setting appearance of the table buttons.
                 splitMenuButtonTable.setText("Table " + tableID);
                 splitMenuButtonTable.setGraphic(new ImageView(imageTableIcon));
@@ -307,7 +307,7 @@ public class EmployeeMenuController implements Initializable {
                     
                 });
 
-                menuItemAddOrder.setOnAction(event -> {
+                menuObjectAddOrder.setOnAction(event -> {
                     //Creating the Add Order Dialog.
                     Dialog addOrderDialog = new Dialog();
                     addOrderDialog.setTitle("Add Order");
@@ -323,16 +323,16 @@ public class EmployeeMenuController implements Initializable {
                     gridPane.setVgap(15);
                     gridPane.setPadding(new Insets(20, 150, 10, 10));
 
-                    //ComboBox for Meal Name.
+                    //ComboBox for MenuObjects Name.
                     ComboBox<String> comboBoxMealName = new ComboBox<>();
                     comboBoxMealName.setPrefWidth(150);
-                    //Adding Meal Names to ComboBox.
-                    comboBoxMealName.getItems().addAll(Meal.fillComboBoxMeal());
+                    //Adding MenuObjects Names to ComboBox.
+                    comboBoxMealName.getItems().addAll(MenuObject.fillComboBoxMeal());
                     comboBoxMealName.getSelectionModel().selectFirst();
                     comboBoxMealName.setOnMousePressed(event1 -> {
-                        //When the ComboBox is clicked, delete and add Meal Names again to update changes.
+                        //When the ComboBox is clicked, delete and add MenuObjects Names again to update changes.
                         comboBoxMealName.getItems().clear();
-                        comboBoxMealName.getItems().addAll(Meal.fillComboBoxMeal());
+                        comboBoxMealName.getItems().addAll(MenuObject.fillComboBoxMeal());
                         comboBoxMealName.getSelectionModel().selectFirst();
                     });
 
@@ -363,8 +363,8 @@ public class EmployeeMenuController implements Initializable {
 
                         //Order TableID
                         String tableID = textFieldTableID.getText();
-                        //Order Meal Name
-                        String mealName = comboBoxMealName.getValue();
+                        //Order MenuObjects Name
+                        String menuObjectName = comboBoxMealName.getValue();
                         //Order Date
                         String orderDate = String.valueOf(LocalDateTime.now());
 
@@ -387,11 +387,11 @@ public class EmployeeMenuController implements Initializable {
                     }
                 });
 
-                menuItemSetAvailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;"));
+                menuObjectSetAvailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;"));
 
-                menuItemSetUnavailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
+                menuObjectSetUnavailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
 
-                menuItemSetBooked.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FFFF00;"));
+                menuObjectSetBooked.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FFFF00;"));
 
                 //Adding the created Button to GridPane and incrementing columnIndex.
                 gridPaneTables.add(splitMenuButtonTable, columnIndex, rowIndex);

@@ -14,7 +14,7 @@ public class Customer
     private int tableNumber; //table number of the customer
     private int numberOfPeople; //number of people in this table
     private String seatedTime; //seated time for this customer
-    private ArrayList<Meal> orders; //arraylist of meal orders
+    private ArrayList<MenuObject> orders; //arraylist of menu item orders
 
 //    private int numberOfPeople; //number of people in this table
 //    private String seatedTime; //seated time for this customer
@@ -24,7 +24,7 @@ public class Customer
     public Customer(int tableNumber)
     {
         this.tableNumber = tableNumber;
-        orders = new ArrayList<Meal>(); 
+        orders = new ArrayList<MenuObject>(); 
         total = 0;
     }
     
@@ -35,13 +35,13 @@ public class Customer
         total = -1;
     }
     
-    public void makeOrder(Meal item)
+    public void makeOrder(MenuObject item)
     {
         orders.add(item);
-        total += item.getMealPriceProperty();
+        total += item.getMenuObjectPriceProperty();
     }
     
-    public ArrayList<Meal> viewHistory()
+    public ArrayList<MenuObject> viewHistory()
     {
         return orders;
     }
