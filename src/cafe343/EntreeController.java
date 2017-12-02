@@ -23,14 +23,8 @@ import javafx.stage.Stage;
  *
  * @author artur
  */
-public class CustomerMenuController implements Initializable {
+public class EntreeController implements Initializable {
 
-    @FXML
-    private Button entreesButton;
-    @FXML
-    private Button appetizersButton;
-    @FXML
-    private Button drinksButton;
     @FXML
     private Button returnButton;
     @FXML
@@ -39,7 +33,6 @@ public class CustomerMenuController implements Initializable {
     private Button checkoutButton;
     @FXML
     private Button serverButton;
-    
 
     /**
      * Initializes the controller class.
@@ -50,46 +43,13 @@ public class CustomerMenuController implements Initializable {
     }    
 
     @FXML
-    private void handleEntreesButtonAction(ActionEvent event) throws IOException{
-        Parent Parent = FXMLLoader.load(getClass().getResource("Entree.fxml"));
-        Scene nextScene = new Scene(Parent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setResizable(false);
-        window.setScene(nextScene);
-        window.setTitle("Entrées");
-        window.show();
-    }
-
-    @FXML
-    private void handleAppetizersButtonAction(ActionEvent event) throws IOException {
-        Parent Parent = FXMLLoader.load(getClass().getResource("Appetizer.fxml"));
-        Scene nextScene = new Scene(Parent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setResizable(false);
-        window.setScene(nextScene);
-        window.setTitle("Appetizers");
-        window.show();
-    }
-    
-    @FXML
-    private void handleDrinksButtonAction(ActionEvent event) throws IOException {
-        Parent Parent = FXMLLoader.load(getClass().getResource("Drink.fxml"));
-        Scene nextScene = new Scene(Parent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setResizable(false);
-        window.setScene(nextScene);
-        window.setTitle("Drinks");
-        window.show();
-    }
-
-    @FXML
     private void handleReturnButton(ActionEvent event) throws IOException {
-        Parent Parent = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+        Parent Parent = FXMLLoader.load(getClass().getResource("CustomerMenu.fxml"));
         Scene nextScene = new Scene(Parent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setResizable(false);
         window.setScene(nextScene);
-        window.setTitle("Welcome to Cafe 343");
+        window.setTitle("Customer Menu");
         window.show();
     }
     
@@ -102,11 +62,10 @@ public class CustomerMenuController implements Initializable {
         window.setScene(nextScene);
         window.setTitle("Order History");
         window.show();
-        
     }
-
+    
     @FXML
-    private void handleCheckoutButton(ActionEvent event) throws IOException{
+    private void handleCheckoutButton(ActionEvent event) throws IOException {
         Parent Parent = FXMLLoader.load(getClass().getResource("CheckOut.fxml"));
         Scene nextScene = new Scene(Parent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -115,10 +74,9 @@ public class CustomerMenuController implements Initializable {
         window.setTitle("Check Out");
         window.show();
     }
-
+    
     @FXML
-    private void handleServerButton(ActionEvent event) {
-        
+    private void handleServerButton(ActionEvent event) throws IOException {
     }
-
+    
 }
