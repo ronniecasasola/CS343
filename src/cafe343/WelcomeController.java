@@ -58,6 +58,11 @@ public class WelcomeController implements Initializable {
         window.setScene(customerMenuScene);
         window.setTitle("Customer Menu");
         window.getIcons().add(new Image("resources/application_icon.png"));
+
+        window.setResizable(false); 
+        window.setScene(customerMenuScene);
+        window.setTitle("Employee Login");
+
         window.show();
     }
 }

@@ -1,23 +1,37 @@
 package cafe343;
 
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
-import java.sql.*;
-
 public class Meal {
 
     private String mealName;
-    private int mealPrice;
+    private double mealPrice;
+    private String mealType;
 
+    
     //Simple Integer and String Properties for populating TableView.
-    private final SimpleIntegerProperty mealPriceProperty = new SimpleIntegerProperty(mealPrice);
+    private final SimpleDoubleProperty mealPriceProperty = new SimpleDoubleProperty(mealPrice);
     private final SimpleStringProperty mealNameProperty = new SimpleStringProperty(mealName);
 
-    public int getMealPriceProperty() {
+    Meal(String mealName, double mealPrice, String mealType)
+    {
+        this.mealName=mealName;
+        this.mealPrice=mealPrice;
+        this.mealType=mealType;
+    }
+    
+    Meal()
+    {
+        mealName = "";
+        mealPrice = 0;
+        mealType ="";
+    }
+    
+    public double getMealPriceProperty() {
         return mealPriceProperty.get();
     }
 
