@@ -13,8 +13,10 @@ public class menuItem
 {
     private String name; //name of the item
     private double price; //price of the item
-    private String note; //note for chef on particular item
-    menuItem(String name, double price)
+    private String type; //type of food
+    
+//    private String note; //note for chef on particular item
+    menuItem(String name, double price, String type)
     {
         this.name=name;
         this.price=price;
@@ -24,10 +26,26 @@ public class menuItem
     {
         name = "";
         price = 0;
+        type ="";
     }
     
-    public void addNote(String note)
+//    public void addNote(String note)
+//    {
+//        this.note = note;
+//    }
+    
+    public String getName()
     {
-        this.note = note;
+        return name;
     }
+    
+    public double getPrice()
+    {
+        return price;
+    }
+    
+//    public String toString()
+//    {
+//        return name+"     "+price;
+//    }
 }
