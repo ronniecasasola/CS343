@@ -14,7 +14,7 @@ public class Customer
     private int tableNumber; //table number of the customer
     private int numberOfPeople; //number of people in this table
     private String seatedTime; //seated time for this customer
-    private ArrayList<Order> orders = new ArrayList<Order>(); //arraylist of orders
+    private ArrayList<Meal> orders = new ArrayList<Meal>(); //arraylist of meal orders
     private int total; //total amount this table has spent
     
     public Customer(int tableNumber, int numberOfPeople, String seatedTime)
@@ -24,7 +24,7 @@ public class Customer
         this.seatedTime = seatedTime;
     }
     
-    public void makeOrder(menuItem item, String note)
+    public void makeOrder(Meal item, String note)
     {
         
     }
