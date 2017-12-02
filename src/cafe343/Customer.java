@@ -12,15 +12,19 @@ import java.util.*;
 public class Customer 
 {
     private int tableNumber; //table number of the customer
+    private int numberOfPeople; //number of people in this table
+    private String seatedTime; //seated time for this customer
+    private ArrayList<MenuObject> orders; //arraylist of menu item orders
+
 //    private int numberOfPeople; //number of people in this table
 //    private String seatedTime; //seated time for this customer
-    private ArrayList<menuItem> orders;//arraylist of orders
+  
     private int total; //total amount this table has spent
     
     public Customer(int tableNumber)
     {
         this.tableNumber = tableNumber;
-        orders = new ArrayList<menuItem>(); 
+        orders = new ArrayList<MenuObject>(); 
         total = 0;
     }
     
@@ -31,13 +35,13 @@ public class Customer
         total = -1;
     }
     
-    public void makeOrder(menuItem item)
+    public void makeOrder(MenuObject item)
     {
         orders.add(item);
-        total += item.getPrice();
+        total += item.getMenuObjectPriceProperty();
     }
     
-    public ArrayList<menuItem> viewHistory()
+    public ArrayList<MenuObject> viewHistory()
     {
         return orders;
     }

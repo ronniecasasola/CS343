@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 /**
@@ -34,14 +35,23 @@ public class AppetizerController implements Initializable {
     @FXML
     private Button serverButton;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }  
-    
+  
+      @FXML
+    private TableView<MenuObject> tableViewAppetizers;
+      
+      private void appetizersRefresh(){
+        //Setting TableView with ObservableList from Meal Class.
+        tableViewAppetizers.setItems(MenuObject.listAppetizerObject());
+    }
+      
+
+      //Setting TableView
+    private void setTableViewAppetizers(TableView<MenuObject> tableViewAppetizers) {
+        //Adds extra space to column.
+        tableViewAppetizers.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.tableViewAppetizers = tableViewAppetizers;
+    }
+
     @FXML
     private void handleReturnButton(ActionEvent event) throws IOException {
         Parent Parent = FXMLLoader.load(getClass().getResource("CustomerMenu.fxml"));
@@ -78,5 +88,15 @@ public class AppetizerController implements Initializable {
     @FXML
     private void handleServerButton(ActionEvent event) throws IOException {
     }
+    
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        appetizersRefresh();
+        setTableViewAppetizers(tableViewAppetizers);
+    }  
+    
     
 }
