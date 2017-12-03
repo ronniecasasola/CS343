@@ -108,8 +108,6 @@ public class EmployeeMenuController implements Initializable {
         
     }
 
- 
-
     //Method used for adding Buttons(Tables) to GridPane.
     private void tableCreate(){
 
