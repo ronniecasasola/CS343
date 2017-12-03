@@ -34,12 +34,13 @@ public class EntreeController implements Initializable {
     @FXML
     private Button serverButton;
 
+    private static Customer customer;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        customer = WelcomeController.getCustomer();
     }    
 
     @FXML
@@ -75,8 +76,12 @@ public class EntreeController implements Initializable {
         window.show();
     }
     
+
+    
     @FXML
-    private void handleServerButton(ActionEvent event) throws IOException {
+    private void handleServerButton(ActionEvent event) throws IOException 
+    {
+        
     }
     
 }

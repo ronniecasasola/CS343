@@ -35,6 +35,11 @@ public class Customer
         total = -1;
     }
     
+    public int getTableNumber()
+    {
+        return tableNumber;
+    }
+    
     public void makeOrder(MenuObject item)
     {
         orders.add(item);
