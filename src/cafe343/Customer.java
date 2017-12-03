@@ -9,6 +9,7 @@ import java.util.*;
  *
  * @author xinyi
  */
+
 public class Customer 
 {
     private int tableNumber; //table number of the customer
@@ -19,7 +20,7 @@ public class Customer
 //    private int numberOfPeople; //number of people in this table
 //    private String seatedTime; //seated time for this customer
   
-    private int total; //total amount this table has spent
+    private double total; //total amount this table has spent
     
     public Customer(int tableNumber)
     {

@@ -20,8 +20,8 @@
       <Button fx:id="serverButton" layoutX="860.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleServerButton" prefHeight="50.0" prefWidth="150.0" text="Server" />
       <TableView layoutX="112.0" layoutY="96.0" prefHeight="450.0" prefWidth="800.0">
          <columns>
-            <TableColumn prefWidth="150.0" text="C1" />
-            <TableColumn prefWidth="150.0" text="C2" />
+            <TableColumn prefWidth="385.0" text="Name" />
+            <TableColumn editable="false" prefWidth="414.0" text="Price" />
          </columns>
       </TableView>
    </children>

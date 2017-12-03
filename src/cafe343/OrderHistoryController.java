@@ -16,7 +16,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.util.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -31,7 +37,15 @@ public class OrderHistoryController implements Initializable {
     private Button checkout;
     @FXML
     private Button serverButton;
-
+    @FXML
+    private TableColumn Name;
+    @FXML
+    private TableColumn Price;
+    @FXML
+    private Table table;
+    
+    private ArrayList<MenuObject> history;
+    
     private static Customer customer;
     /**
      * Initializes the controller class.
@@ -40,6 +54,14 @@ public class OrderHistoryController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         customer = WelcomeController.getCustomer();
+        history = customer.viewHistory();
+        
+        for(int i = 0; i<history.size(); i++)
+        {
+            Name.setCellValueFactory (new PropertyValueFactory<>(history.get(i).getMenuObjectNameProperty()));
+        }
+        
+            
     }    
 
     @FXML

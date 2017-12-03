@@ -68,6 +68,7 @@ public class AppetizerController implements Initializable {
     private ArrayList<Image> listOfImages;
     private int columnIndex = 0;
     private int rowIndex = 0;
+    private int index; //index of the items in the array
     
      private static Customer customer;
     
@@ -97,6 +98,7 @@ public class AppetizerController implements Initializable {
             //get and store appetizer attributes
             String objectName = menuObjectList.get(i).getMenuObjectNameProperty();
             String objectPrice = menuObjectList.get(i).getMenuObjectPricePropertyFormatted();
+            double  price = menuObjectList.get(i).getMenuObjectPriceProperty();
             String objectDescription = menuObjectList.get(i).getMenuObjectDescriptionProperty();
             
         //Checking the columnIndex initially to see if it equals to the limit.
@@ -126,6 +128,18 @@ public class AppetizerController implements Initializable {
 
             splitMenuButtonTable.setOnAction(event -> {
                CustomerMenuAppetizersDescriptionProperty.setText(objectDescription);
+               
+               //making order
+               index = 0;
+               for(int j = 0; j<menuObjectList.size();j++)
+               {
+                   if(menuObjectList.get(j).getMenuObjectNameProperty().equals(objectName))
+                   {
+                       index = j;
+                   }
+               }
+               customer.makeOrder(menuObjectList.get(index));
+               
             });
 
             menuItemAddOrder.setOnAction(event -> {
@@ -138,7 +152,7 @@ public class AppetizerController implements Initializable {
                 gridPane.setHgap(25);
                 gridPane.setVgap(15);
                 gridPane.setPadding(new Insets(20, 150, 10, 10));
-
+                
                 addOrderDialog.getDialogPane().setContent(gridPane);
 
                 //Adding application_icon to Stage.
