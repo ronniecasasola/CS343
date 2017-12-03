@@ -40,12 +40,14 @@ public class CheckOutController implements Initializable {
     @FXML
     private TextField numberOfPeopleTextField;
 
+    private static Customer customer;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        customer = WelcomeController.getCustomer();
     }    
 
     @FXML

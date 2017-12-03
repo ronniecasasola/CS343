@@ -69,6 +69,8 @@ public class AppetizerController implements Initializable {
     private int columnIndex = 0;
     private int rowIndex = 0;
     
+     private static Customer customer;
+    
     /*
     * uses the the size of the list of menu objects to store an image
     * of that menu object into a list of images
@@ -147,9 +149,8 @@ public class AppetizerController implements Initializable {
             //Adding the created Button to GridPane and incrementing columnIndex.
             gridPaneTables.add(splitMenuButtonTable,columnIndex,rowIndex);
             columnIndex++;
-        } 
-    }
-      
+        }
+     }
 
 
     @FXML
@@ -195,6 +196,7 @@ public class AppetizerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         appetizersRefresh();
+        customer = WelcomeController.getCustomer();
     }  
     
     

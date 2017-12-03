@@ -32,16 +32,19 @@ public class OrderHistoryController implements Initializable {
     @FXML
     private Button serverButton;
 
+    private static Customer customer;
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize(URL url, ResourceBundle rb) 
+    {
+        customer = WelcomeController.getCustomer();
     }    
 
     @FXML
-    private void handleMenuButton(ActionEvent event) throws IOException {
+    private void handleMenuButton(ActionEvent event) throws IOException 
+    {
         Parent Parent = FXMLLoader.load(getClass().getResource("CustomerMenu.fxml"));
         Scene nextScene = new Scene(Parent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -52,7 +55,8 @@ public class OrderHistoryController implements Initializable {
     }
 
     @FXML
-    private void handleCheckoutButton(ActionEvent event) throws IOException {
+    private void handleCheckoutButton(ActionEvent event) throws IOException 
+    {
         Parent Parent = FXMLLoader.load(getClass().getResource("CheckOut.fxml"));
         Scene nextScene = new Scene(Parent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -63,7 +67,9 @@ public class OrderHistoryController implements Initializable {
     }
     
     @FXML
-    private void handleServerButton(ActionEvent event) {
+    private void handleServerButton(ActionEvent event) 
+    {
+        
     }
     
 }
