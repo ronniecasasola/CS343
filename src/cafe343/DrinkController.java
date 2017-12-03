@@ -34,12 +34,14 @@ public class DrinkController implements Initializable {
     @FXML
     private Button serverButton;
 
+    private static Customer customer;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        customer = WelcomeController.getCustomer();
     }    
     
     @FXML

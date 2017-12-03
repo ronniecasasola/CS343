@@ -30,7 +30,8 @@ public class WelcomeController implements Initializable {
     private Button customerButton;
     @FXML
     private Button EmployeeButton;
-    
+    private static Customer customer;
+    private int n = 0;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -39,6 +40,8 @@ public class WelcomeController implements Initializable {
 
     @FXML
     private void handleCustomerButtonAction(ActionEvent event) throws IOException {
+        n+=1;
+        customer = new Customer(n);
         Parent customerMenuParent = FXMLLoader.load(getClass().getResource("CustomerMenu.fxml"));
         Scene customerMenuScene = new Scene(customerMenuParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -47,6 +50,7 @@ public class WelcomeController implements Initializable {
         window.setTitle("Customer Menu");
         window.getIcons().add(new Image("resources/application_icon.png"));
         window.show();
+        
     }
 
     @FXML
@@ -60,5 +64,11 @@ public class WelcomeController implements Initializable {
 
         window.setResizable(false); 
         window.show();
+    }
+    
+    // use to pass customer
+    public static Customer getCustomer()
+    {
+        return customer;
     }
 }

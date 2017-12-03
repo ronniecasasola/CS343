@@ -35,6 +35,8 @@ public class AppetizerController implements Initializable {
     @FXML
     private Button serverButton;
 
+    private static Customer customer;
+
   
       @FXML
     private TableView<MenuObject> tableViewAppetizers;
@@ -96,6 +98,7 @@ public class AppetizerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         appetizersRefresh();
         setTableViewAppetizers(tableViewAppetizers);
+        customer = WelcomeController.getCustomer();
     }  
     
     

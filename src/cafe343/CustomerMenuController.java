@@ -40,6 +40,7 @@ public class CustomerMenuController implements Initializable {
     @FXML
     private Button serverButton;
     
+    private static Customer customer;
 
     /**
      * Initializes the controller class.
@@ -47,8 +48,11 @@ public class CustomerMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+        customer = WelcomeController.getCustomer(); //pass customer
+    }
 
+    
+    
     @FXML
     private void handleEntreesButtonAction(ActionEvent event) throws IOException{
         Parent Parent = FXMLLoader.load(getClass().getResource("Entree.fxml"));
