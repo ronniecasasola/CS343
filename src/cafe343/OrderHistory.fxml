@@ -19,8 +19,8 @@
       <Button fx:id="checkout" layoutX="860.0" layoutY="583.0" mnemonicParsing="false" onAction="#handleCheckoutButton" prefHeight="50.0" prefWidth="150.0" text="Checkout" />
       <TableView layoutX="112.0" layoutY="96.0" prefHeight="450.0" prefWidth="800.0">
         <columns>
-          <TableColumn prefWidth="150.0" text="C1" />
-          <TableColumn prefWidth="150.0" text="C2" />
+          <TableColumn fx:id="Name" editable="false" prefWidth="398.0" text="Name" />
+          <TableColumn fx:id="Price" prefWidth="401.0" text="Price" />
         </columns>
       </TableView>
    </children>

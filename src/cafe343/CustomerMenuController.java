@@ -48,7 +48,7 @@ public class CustomerMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        customer = WelcomeController.getCustomer(); //pass customer
+        customer = WelcomeController.getCustomer(); //pass customer 
     }
 
     
