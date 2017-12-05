@@ -8,6 +8,8 @@ package cafe343;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,13 +18,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * FXML Controller class
@@ -37,16 +39,19 @@ public class OrderHistoryController implements Initializable {
     private Button checkout;
     @FXML
     private Button serverButton;
-    @FXML
-    private TableColumn Name;
-    @FXML
-    private TableColumn Price;
-    @FXML
-    private Table table;
+ 
     
-    private ArrayList<MenuObject> history;
+    @FXML
+    private TableView<MenuObject> orderHistory;
+    @FXML
+    private TableColumn<MenuObject, String> nameCol;
+    @FXML
+    private TableColumn<MenuObject, String> priceCol;
     
     private static Customer customer;
+    
+    private ObservableList<MenuObject> history = FXCollections.observableArrayList();
+    
     /**
      * Initializes the controller class.
      */
@@ -54,15 +59,17 @@ public class OrderHistoryController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         customer = WelcomeController.getCustomer();
-        history = customer.viewHistory();
-        
-        for(int i = 0; i<history.size(); i++)
+        for (int i =0; i<customer.viewHistory().size();i++)
         {
-            Name.setCellValueFactory (new PropertyValueFactory<>(history.get(i).getMenuObjectNameProperty()));
+            history.add(customer.viewHistory().get(i));
         }
+                
         
-            
-    }    
+        nameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        priceCol.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+        
+        orderHistory.setItems(history);
+    }  
 
     @FXML
     private void handleMenuButton(ActionEvent event) throws IOException 

@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.stage.Stage;
@@ -39,8 +40,12 @@ public class CheckOutController implements Initializable {
     private Button splitItemButton;
     @FXML
     private TextField numberOfPeopleTextField;
+    @FXML 
+    private TextArea output;
 
     private static Customer customer;
+    
+    private double pricePerCustomer;
 
     /**
      * Initializes the controller class.
@@ -66,7 +71,10 @@ public class CheckOutController implements Initializable {
     }
 
     @FXML
-    private void handleSplitPeople(ActionEvent event) {
+    private void handleSplitPeople(ActionEvent event) 
+    {
+        pricePerCustomer = customer.splitByPeople(Integer.parseInt(numberOfPeopleTextField.getText()));
+        output.setText(String.valueOf(pricePerCustomer));
     }
 
     @FXML
