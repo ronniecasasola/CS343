@@ -117,6 +117,7 @@ public class AppetizerController implements Initializable {
             final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuItemAddOrder);
 
             //Setting appearance of the table buttons.
+            
             splitMenuButtonTable.setText(objectName + "  " + objectPrice);
             splitMenuButtonTable.setGraphic(new ImageView(listOfImages.get(i)));
             splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;");
