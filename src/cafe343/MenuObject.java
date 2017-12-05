@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -21,7 +22,8 @@ public class MenuObject {
     private final SimpleStringProperty menuObjectNameProperty;
     private final SimpleDoubleProperty menuObjectPriceProperty;
     private final SimpleStringProperty menuObjectDescriptionProperty;
-
+    private SimpleStringProperty menuObjectPrice;
+    
     MenuObject(String menuObjectName, double menuObjectPrice, String menuObjectDescription)
     {
         menuObjectNameProperty = new SimpleStringProperty(menuObjectName);
@@ -31,6 +33,16 @@ public class MenuObject {
     
     public double getMenuObjectPriceProperty() {
         return menuObjectPriceProperty.get();
+    }
+    
+    public StringProperty nameProperty()
+    {
+        return menuObjectNameProperty;
+    }
+    public StringProperty priceProperty()
+    {
+         menuObjectPrice = new SimpleStringProperty(menuObjectPriceProperty.toString());
+         return menuObjectPrice;
     }
     
     //created to resolve errors with displaying menu object price within the menu's grid of buttons with 
