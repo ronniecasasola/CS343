@@ -58,6 +58,7 @@ public class OrderHistoryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        
         customer = WelcomeController.getCustomer();
         for (int i =0; i<customer.viewHistory().size();i++)
         {

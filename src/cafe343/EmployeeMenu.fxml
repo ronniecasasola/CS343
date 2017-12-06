@@ -19,12 +19,12 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="360.0" layoutY="42.0" text="Tables" textAlignment="CENTER" AnchorPane.rightAnchor="830.0" AnchorPane.topAnchor="42.0">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="467.0" layoutY="42.0" text="Tables" textAlignment="CENTER" AnchorPane.rightAnchor="467.0" AnchorPane.topAnchor="42.0">
                      <font>
                         <Font name="System Regular" size="32.0" />
                      </font>
                   </Label>
-                  <GridPane fx:id="gridPaneTables" hgap="15" layoutX="215.0" layoutY="112.0" prefHeight="497.0" prefWidth="850.0" vgap="15" AnchorPane.bottomAnchor="38.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="112.0">
+                  <GridPane fx:id="gridPaneTables" hgap="15" layoutX="87.0" layoutY="114.0" prefHeight="497.0" prefWidth="850.0" vgap="15" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="114.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,17 +40,17 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <Button fx:id="buttonAddTable" layoutX="549.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleAddTableButtonAction" prefHeight="50" prefWidth="75" text="+">
+                  <Button fx:id="buttonAddTable" layoutX="613.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleAddTableButtonAction" prefHeight="50" prefWidth="75" text="+">
                      <font>
                         <Font name="System Bold" size="32.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonDeleteTable" layoutX="656.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleDeleteTableButtonAction" prefHeight="50.0" prefWidth="75.0" text="-">
+                  <Button fx:id="buttonDeleteTable" layoutX="729.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleDeleteTableButtonAction" prefHeight="50.0" prefWidth="75.0" text="-">
                      <font>
                         <Font name="System Bold" size="32.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonRefreshTable" layoutX="755.0" layoutY="31.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0">
+                  <Button fx:id="buttonRefreshTable" layoutX="834.0" layoutY="31.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0">
                      <font>
                         <Font size="32.0" />
                      </font>
@@ -68,7 +68,7 @@
                         <Font name="System Regular" size="32.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tableViewJobs1" layoutX="66.0" layoutY="109.0" prefHeight="500.0" prefWidth="1150.0">
+                  <TableView fx:id="tableViewJobs1" layoutX="83.0" layoutY="125.0" prefHeight="500.0" prefWidth="859.0">
                      <columns>
                         <TableColumn prefWidth="105.0" text="Table">
                            <cellValueFactory>
@@ -76,17 +76,17 @@
                            </cellValueFactory>
                         </TableColumn>
                         <TableColumn prefWidth="122.33331298828125" text="Type" />
-                        <TableColumn minWidth="0.0" prefWidth="260.99993896484375" text="Menu Item">
+                        <TableColumn minWidth="0.0" prefWidth="173.0" text="Menu Item">
                            <cellValueFactory>
                               <PropertyValueFactory property="jobSalaryProperty" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="411.99993896484375" text="Amount">
+                        <TableColumn prefWidth="172.66668701171875" text="Amount">
                            <cellValueFactory>
                               <PropertyValueFactory property="jobDepartmentProperty" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="248.0" text="Status">
+                        <TableColumn prefWidth="283.33331298828125" text="Status">
                            <cellValueFactory>
                               <PropertyValueFactory property="jobDepartmentProperty" />
                            </cellValueFactory>
@@ -106,7 +106,7 @@
                         <Font name="System Regular" size="32.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tableViewJobs" layoutX="65.0" layoutY="130.0" prefHeight="500.0" prefWidth="1150.0" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="130.0">
+                  <TableView fx:id="tableViewJobs" layoutX="65.0" layoutY="123.0" prefHeight="500.0" prefWidth="860.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="123.0">
                      <columns>
                         <TableColumn prefWidth="105.0" text="Table">
                            <cellValueFactory>

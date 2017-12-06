@@ -5,13 +5,18 @@
         <group>
             <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/CustomerMenuController.java</file>
             <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/Appetizer.fxml</file>
+            <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/data/LoginCredentials.txt</file>
+            <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/Customer.java</file>
+            <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/Login.fxml</file>
+            <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/MenuObject.java</file>
             <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/Table.java</file>
             <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/Drink.fxml</file>
             <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/EmployeeMenuController.java</file>
             <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/AppetizerController.java</file>
-            <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/Customer.java</file>
+            <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/DrinkController.java</file>
+            <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/CheckOutController.java</file>
+            <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/LoginController.java</file>
             <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/data/AppetizersList.txt</file>
-            <file>file:/C:/Users/Ronnie/Documents/GitHub/CECS-343/src/cafe343/MenuObject.java</file>
         </group>
     </open-files>
 </project-private>

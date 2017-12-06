@@ -130,17 +130,6 @@ public class AppetizerController implements Initializable {
             splitMenuButtonTable.setOnAction(event -> {
                CustomerMenuAppetizersDescriptionProperty.setText(objectDescription);
                
-               //making order
-               index = 0;
-               for(int j = 0; j<menuObjectList.size();j++)
-               {
-                   if(menuObjectList.get(j).getMenuObjectNameProperty().equals(objectName))
-                   {
-                       index = j;
-                   }
-               }
-               customer.makeOrder(menuObjectList.get(index));
-               
             });
 
             menuItemAddOrder.setOnAction(event -> {
@@ -159,6 +148,17 @@ public class AppetizerController implements Initializable {
                 //Adding application_icon to Stage.
                 Stage addOrderStage = (Stage) addOrderDialog.getDialogPane().getScene().getWindow();
                 addOrderStage.getIcons().add(new Image("resources/application_icon.png"));
+                
+                //making order
+               index = 0;
+               for(int j = 0; j<menuObjectList.size();j++)
+               {
+                   if(menuObjectList.get(j).getMenuObjectNameProperty().equals(objectName))
+                   {
+                       index = j;
+                   }
+               }
+               customer.makeOrder(menuObjectList.get(index));
             });
 
             //Adding the created Button to GridPane and incrementing columnIndex.
