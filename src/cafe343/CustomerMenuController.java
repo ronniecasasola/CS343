@@ -99,6 +99,7 @@ public class CustomerMenuController implements Initializable {
     
     @FXML
     private void handleOrderHistoryButton(ActionEvent event) throws IOException {
+        /* Previous Method
         Parent Parent = FXMLLoader.load(getClass().getResource("OrderHistory.fxml"));
         Scene nextScene = new Scene(Parent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -106,7 +107,20 @@ public class CustomerMenuController implements Initializable {
         window.setScene(nextScene);
         window.setTitle("Order History");
         window.show();
-        
+        */
+ 
+                   
+                   
+           Stage currentStage = (Stage)orderHistoryButton.getScene().getWindow();
+           Parent root = FXMLLoader.load(getClass().getResource("OrderHistory.fxml"));
+           currentStage.setScene(new Scene(root));
+
+           
+           
+           
+            //Close Previous Stage
+      //     Stage primaryStage = (Stage)orderHistoryButton.getScene().getWindow();
+        //   primaryStage.close();
     }
 
     @FXML

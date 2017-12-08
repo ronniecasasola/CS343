@@ -60,18 +60,20 @@ public class OrderHistoryController implements Initializable {
     {
         
         customer = WelcomeController.getCustomer();
+        
         for (int i =0; i<customer.viewHistory().size();i++)
         {
             history.add(customer.viewHistory().get(i));
         }
-                
         
         nameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         priceCol.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
         
         orderHistory.setItems(history);
+         
     }  
-
+    
+    
     @FXML
     private void handleMenuButton(ActionEvent event) throws IOException 
     {

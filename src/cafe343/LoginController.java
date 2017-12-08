@@ -23,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -37,7 +38,7 @@ public class LoginController implements Initializable {
     @FXML
     private TextField IDText;
     @FXML
-    private TextField passText;
+    private PasswordField passwordField;
     @FXML
     private Button loginButton;
     @FXML
@@ -76,7 +77,7 @@ public class LoginController implements Initializable {
             errorAlert.showAndWait();
 
             //Checking TextField Meal Price is empty.
-        } else if (passText.getText().equals("")) {
+        } else if (passwordField.getText().equals("")) {
 
             //Showing Error Dialog.
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -94,7 +95,7 @@ public class LoginController implements Initializable {
 
             //Getting values from TextFields and creating Meal by them in database.
             IDnum = IDText.getText();
-            password = passText.getText();
+            password = passwordField.getText();
 
             if (credentials.containsKey(IDnum)) {
                 String storedPassword = (String) credentials.get(IDnum);
@@ -119,7 +120,7 @@ public class LoginController implements Initializable {
     @FXML
     private void clearButtonEvt(ActionEvent event) {
         IDText.setText("");
-        passText.setText("");
+        passwordField.setText("");
     }
 
     @FXML
