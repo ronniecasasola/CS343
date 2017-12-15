@@ -1,3 +1,9 @@
 Spinach Salad; 7.75; Fresh spinach, mushrooms, and hard boiled egg served with warm bacon vinaigrette.
 French Fries; 6.00; Crispy delicious natural cut French fries.
 Chicken Tenders; 5.75; Hand-breaded, lightly fried tenderloins of chicken, served with honey mustard and hickory barbecue sauces.
+Chicken Wings; 6.00; Food.
+Mozerella Sticks; 6.00; Food.
+Nachos; 6.00; Food.
+Onion Rings; 6.00; Food.
+Boneless Wings; 6.00; Food.
+Tortilla Soup; 6.00; Food.
