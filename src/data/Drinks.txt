@@ -1,0 +1,6 @@
+Coke; 1.75; .
+Sprite; 1.75; .
+Pepsi; 1.75; .
+Lemonade; 2.00; .
+Coffee; 2.00; .
+Water; 0.00; .
