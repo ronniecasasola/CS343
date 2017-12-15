@@ -63,7 +63,7 @@ public class CheckOutController implements Initializable {
         numberOfPeople = 1;
         numberOfPeopleTextField.setText(Integer.toString(numberOfPeople));
         DecimalFormat df = new DecimalFormat("#.00");
-        total.setText( df.format(Double.toString(customer.getTotal()*1.1025)));
+        total.setText( df.format((customer.getTotal()*1.1025)));
     }    
 
     @FXML
