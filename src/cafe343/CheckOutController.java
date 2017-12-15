@@ -7,6 +7,7 @@ package cafe343;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,7 +46,9 @@ public class CheckOutController implements Initializable {
     private TextField numberOfPeopleTextField;
     @FXML 
     private TextArea output;
-
+    @FXML
+    private TextArea total;
+    
     private static Customer customer;
     
     private double pricePerCustomer;
@@ -59,6 +62,8 @@ public class CheckOutController implements Initializable {
         customer = WelcomeController.getCustomer();
         numberOfPeople = 1;
         numberOfPeopleTextField.setText(Integer.toString(numberOfPeople));
+        DecimalFormat df = new DecimalFormat("#.00");
+        total.setText( df.format((customer.getTotal()*1.1025)));
     }    
 
     @FXML
