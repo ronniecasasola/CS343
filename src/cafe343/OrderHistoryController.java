@@ -67,7 +67,7 @@ public class OrderHistoryController implements Initializable {
         }
         
         nameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        priceCol.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+        priceCol.setCellValueFactory(cellData -> cellData.getValue().getMenuObjectPricePropertyFormattedForOrderHistory());
         
         orderHistory.setItems(history);
          

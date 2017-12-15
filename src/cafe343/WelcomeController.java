@@ -39,7 +39,7 @@ public class WelcomeController implements Initializable {
     }    
 
     @FXML
-    private void handleCustomerButtonAction(ActionEvent event) throws IOException {
+    private void handleCustomerButtonAction(ActionEvent event) throws IOException, ClassNotFoundException {
         n+=1;
         customer = new Customer(n);
         Parent customerMenuParent = FXMLLoader.load(getClass().getResource("CustomerMenu.fxml"));
