@@ -66,16 +66,16 @@ public class DrinkController implements Initializable {
         window.show();
     }
     
-    @FXML
-    private void handleCheckoutButton(ActionEvent event) throws IOException {
-        Parent Parent = FXMLLoader.load(getClass().getResource("CheckOut.fxml"));
-        Scene nextScene = new Scene(Parent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setResizable(false);
-        window.setScene(nextScene);
-        window.setTitle("Check Out");
-        window.show();
-    }
+//    @FXML
+//    private void handleCheckoutButton(ActionEvent event) throws IOException {
+//        Parent Parent = FXMLLoader.load(getClass().getResource("CheckOut.fxml"));
+//        Scene nextScene = new Scene(Parent);
+//        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        window.setResizable(false);
+//        window.setScene(nextScene);
+//        window.setTitle("Check Out");
+//        window.show();
+//    }
     
     @FXML
     private void handleServerButton(ActionEvent event) throws IOException {

@@ -49,13 +49,16 @@ public class CheckOutController implements Initializable {
     private static Customer customer;
     
     private double pricePerCustomer;
-
+    
+    private int numberOfPeople;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         customer = WelcomeController.getCustomer();
+        numberOfPeople = 1;
+        numberOfPeopleTextField.setText(Integer.toString(numberOfPeople));
     }    
 
     @FXML
@@ -70,18 +73,33 @@ public class CheckOutController implements Initializable {
     }
 
     @FXML
-    private void handleServerButton(ActionEvent event) {
+    private void handleServerButton(ActionEvent event) 
+    {
+        
     }
 
     @FXML
     private void handleSplitPeople(ActionEvent event) 
     {
         pricePerCustomer = customer.splitByPeople(Integer.parseInt(numberOfPeopleTextField.getText()));
-        output.setText(String.valueOf(pricePerCustomer));
+
+        output.setText("Each person pays $"+String.valueOf(pricePerCustomer));
     }
 
+    //when subtract button is click, the text area decrease the number of people
     @FXML
-    private void handleSplitItemButton(ActionEvent event) {
+    private void handleSubtract(ActionEvent event) 
+    {
+        numberOfPeople-=1;
+        numberOfPeopleTextField.setText(Integer.toString(numberOfPeople));
+    }
+    
+    //when add bubtton is clicked, the text area update the text.
+    @FXML
+    private void handleAddPeople(ActionEvent event) 
+    {
+        numberOfPeople+=1;
+        numberOfPeopleTextField.setText(Integer.toString(numberOfPeople));
     }
     
     @FXML
