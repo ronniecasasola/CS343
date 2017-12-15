@@ -35,6 +35,6 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <TextField fx:id="CustomerMenuAppetizersDescriptionProperty" layoutX="216.0" layoutY="663.0" prefHeight="91.0" prefWidth="613.0" />
+      <TextField fx:id="CustomerMenuEntreeDescriptionProperty" layoutX="216.0" layoutY="663.0" prefHeight="91.0" prefWidth="613.0" />
    </children>
 </AnchorPane>
