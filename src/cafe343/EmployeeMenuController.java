@@ -6,14 +6,21 @@
 package cafe343;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -74,11 +81,17 @@ public class EmployeeMenuController implements Initializable {
     @FXML
     private Button buttonRefreshTable;
     
+    @FXML
+    private Button tabPaneSignOutButton;
+    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+       
         //Calling refresh to all tables at start.
         tableRefresh();
         
@@ -97,6 +110,17 @@ public class EmployeeMenuController implements Initializable {
 
        
     } 
+    
+    @FXML
+    private void handleSignOutButtonAction(ActionEvent event) throws IOException {
+        Parent Parent = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+        Scene nextScene = new Scene(Parent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setResizable(false);
+        window.setScene(nextScene);
+        window.setTitle("Welcome Screen");
+        window.show();
+    }
     
     @FXML
     private void handleAddTableButtonAction(ActionEvent event) {

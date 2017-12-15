@@ -158,7 +158,12 @@ public class AppetizerController implements Initializable {
                        index = j;
                    }
                }
-               customer.makeOrder(menuObjectList.get(index));
+                try {
+                    customer.makeOrder(menuObjectList.get(index));
+                    
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AppetizerController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             });
 
             //Adding the created Button to GridPane and incrementing columnIndex.

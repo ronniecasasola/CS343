@@ -9,6 +9,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -49,6 +54,8 @@ public class LoginController implements Initializable {
     private HashMap credentials;
     private String IDnum;
     private String password;
+    
+    private static Employee employee;
 
     /**
      * Initializes the controller class.
@@ -60,7 +67,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void loginButtonEvt(ActionEvent event) throws IOException{
+    private void loginButtonEvt(ActionEvent event) throws IOException, ClassNotFoundException{
 
         if (IDText.getText().equals("")) {
 
@@ -97,22 +104,41 @@ public class LoginController implements Initializable {
             IDnum = IDText.getText();
             password = passwordField.getText();
 
-            if (credentials.containsKey(IDnum)) {
-                String storedPassword = (String) credentials.get(IDnum);
-                if (storedPassword.equals(password)) {
-                    Parent Parent = FXMLLoader.load(getClass().getResource("EmployeeMenu.fxml"));
+             try {
+                //Connecting with database.
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
+                Connection connection = DriverManager.getConnection( DatabaseConnection.DB_URL );
+                Statement statement = connection.createStatement();
+                //Returning the Usernames from database that are same with entered text.
+                ResultSet resultSet = statement.executeQuery("SELECT USERID FROM EMPLOYEE WHERE "
+                                                                + "USERID = '" + IDnum+ "'" + " AND USERPIN = '" + password + "'");
+                System.out.println(resultSet.toString());
+                //Checking any Username is found from database that are same with entered text.
+                if (resultSet.next()){
+  
+                        Parent Parent = FXMLLoader.load(getClass().getResource("EmployeeMenu.fxml"));
                     Scene nextScene = new Scene(Parent);
                     Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
                     window.setResizable(false);
                     window.setScene(nextScene);
                     window.setTitle("Entrées");
                     window.show();
-                } else {
-                    System.out.println("Wrong password. ");
-                }
+                
             } else {
                 System.out.println("Invalid ID Number. ");
             }
+             }
+      
+                    
+                    
+                
+                
+                
+                  catch (SQLException e) {
+                e.printStackTrace();
+            }
+                
+           
 
         }
     }
