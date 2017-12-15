@@ -7,6 +7,7 @@ package cafe343;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -25,6 +26,7 @@ import javafx.stage.Stage;
 import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TextArea;
 
 /**
  * FXML Controller class
@@ -47,6 +49,12 @@ public class OrderHistoryController implements Initializable {
     private TableColumn<MenuObject, String> nameCol;
     @FXML
     private TableColumn<MenuObject, String> priceCol;
+    @FXML
+    private TextArea subtotal;
+    @FXML
+    private TextArea tax;
+    @FXML
+    private TextArea total;
     
     private static Customer customer;
     
@@ -70,7 +78,11 @@ public class OrderHistoryController implements Initializable {
         priceCol.setCellValueFactory(cellData -> cellData.getValue().getMenuObjectPricePropertyFormattedForOrderHistory());
         
         orderHistory.setItems(history);
-         
+        
+        DecimalFormat df = new DecimalFormat("#.00");
+        subtotal.setText(df.format(customer.getTotal()));
+        tax.setText(df.format(customer.getTotal()*0.1025));
+        total.setText(df.format(customer.getTotal()+customer.getTotal()*1.1025));
     }  
     
     
