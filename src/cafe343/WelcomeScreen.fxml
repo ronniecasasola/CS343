@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="backgroundPane" prefHeight="768.0" prefWidth="1024.0" style="-fx-background: linear-gradient( #4da6ff,#e6ffff);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe343.WelcomeController">
+<AnchorPane id="AnchorPane" fx:id="backgroundPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe343.WelcomeController">
    <children>
       <Label fx:id="titleLabel" layoutX="176.0" layoutY="42.0" prefHeight="189.0" prefWidth="688.0" text="Welcome to Cafe343" textAlignment="CENTER">
          <font>
