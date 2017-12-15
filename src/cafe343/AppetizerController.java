@@ -59,10 +59,10 @@ public class AppetizerController implements Initializable {
     private Button checkoutButton;
     @FXML
     private Button serverButton;
-     @FXML
+    @FXML
     private GridPane gridPaneTables;
      @FXML
-     private TextField CustomerMenuAppetizersDescriptionProperty;
+    private TextField CustomerMenuAppetizersDescriptionProperty;
      
     private static ArrayList<MenuObject> menuObjectList;
     private ArrayList<Image> listOfImages;
@@ -70,7 +70,7 @@ public class AppetizerController implements Initializable {
     private int rowIndex = 0;
     private int index; //index of the items in the array
     
-     private static Customer customer;
+    private static Customer customer;
     
     /*
     * uses the the size of the list of menu objects to store an image
