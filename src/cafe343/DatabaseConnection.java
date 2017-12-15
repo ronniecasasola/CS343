@@ -11,7 +11,7 @@ package cafe343;
  */
 public class DatabaseConnection {
 
-    public static final String DB_URL = "jdbc:derby://localhost:1527/RestaurantSystem; UID=ronnie;PWD=casasola";
+    public static final String DB_URL = "jdbc:derby://localhost:1527/RestaurantSystem;";
     public static final String DB_USER = "ronnie";
     public static final String DB_PASS = "casasola";
 
