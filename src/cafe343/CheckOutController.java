@@ -54,6 +54,7 @@ public class CheckOutController implements Initializable {
     private double pricePerCustomer;
     
     private int numberOfPeople;
+    
     /**
      * Initializes the controller class.
      */
@@ -66,6 +67,11 @@ public class CheckOutController implements Initializable {
         total.setText( df.format((customer.getTotal()*1.1025)));
     }    
 
+    /**
+     * Returns to main menu
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void handleMenuButton(ActionEvent event) throws IOException {
         Parent Parent = FXMLLoader.load(getClass().getResource("CustomerMenu.fxml"));
@@ -83,6 +89,10 @@ public class CheckOutController implements Initializable {
         
     }
 
+    /**
+     * Divides the check by the number of paying customers
+     * @param event 
+     */
     @FXML
     private void handleSplitPeople(ActionEvent event) 
     {
@@ -95,11 +105,14 @@ public class CheckOutController implements Initializable {
     @FXML
     private void handleSubtract(ActionEvent event) 
     {
-        numberOfPeople-=1;
-        numberOfPeopleTextField.setText(Integer.toString(numberOfPeople));
+        if (numberOfPeople > 0){
+             numberOfPeople-=1;
+             numberOfPeopleTextField.setText(Integer.toString(numberOfPeople));
+        }
+   
     }
     
-    //when add bubtton is clicked, the text area update the text.
+    //when add button is clicked, the text area update the text.
     @FXML
     private void handleAddPeople(ActionEvent event) 
     {
@@ -107,6 +120,11 @@ public class CheckOutController implements Initializable {
         numberOfPeopleTextField.setText(Integer.toString(numberOfPeople));
     }
     
+    /**
+     * Accesses feedback screen
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void handleFeedbackButton(ActionEvent event) throws IOException{  
         
