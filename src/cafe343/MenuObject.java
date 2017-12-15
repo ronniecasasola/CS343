@@ -52,7 +52,15 @@ public class MenuObject {
     
     //created to resolve errors with displaying menu object price within the menu's grid of buttons with 
     //correct format ($ sign with .00 two decimal places)
-    public String getMenuObjectPricePropertyFormatted() {
+    
+    public StringProperty getMenuObjectPricePropertyFormattedForOrderHistory() {
+        DecimalFormat df = new DecimalFormat("#.00");
+        
+        menuObjectPrice = new SimpleStringProperty("$" + df.format(menuObjectPriceProperty.get()));
+        return menuObjectPrice;
+    }
+    
+     public String getMenuObjectPricePropertyFormatted() {
         DecimalFormat df = new DecimalFormat("#.00");
         return "$" + df.format(menuObjectPriceProperty.get());
     }
