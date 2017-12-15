@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe343.FeedbackController">
+   <children>
+      <TextArea fx:id="feedbackText" layoutX="154.0" layoutY="373.0" prefHeight="140.0" prefWidth="717.0">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font>
+      </TextArea>
+      <Text layoutX="124.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We hope you enjoyed your stay. Please come back again!" textAlignment="CENTER" wrappingWidth="775.13671875">
+         <font>
+            <Font name="Segoe UI Black" size="48.0" />
+         </font>
+      </Text>
+      <Text layoutX="230.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you'd like, leave some feedback. Let us know how we can improve :)">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="returnButton" layoutX="569.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="88.0" prefWidth="302.0" text="Return">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="submitButton" layoutX="154.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="88.0" prefWidth="302.0" text="Submit">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

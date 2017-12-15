@@ -39,6 +39,9 @@ public class CheckOutController implements Initializable {
     @FXML
     private Button splitItemButton;
     @FXML
+    private Button feedbackButton;
+    
+    @FXML
     private TextField numberOfPeopleTextField;
     @FXML 
     private TextArea output;
@@ -81,4 +84,12 @@ public class CheckOutController implements Initializable {
     private void handleSplitItemButton(ActionEvent event) {
     }
     
+    @FXML
+    private void handleFeedbackButton(ActionEvent event) throws IOException{  
+        
+           Stage currentStage = (Stage)menuButton.getScene().getWindow();
+           Parent root = FXMLLoader.load(getClass().getResource("Feedback.fxml"));
+           currentStage.setScene(new Scene(root));
+
+    }
 }

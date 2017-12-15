@@ -54,5 +54,6 @@
             </TextField>
          </children>
       </GridPane>
+      <Button fx:id="feedbackButton" layoutX="860.0" layoutY="687.0" mnemonicParsing="false" onAction="#handleFeedbackButton" prefHeight="50.0" prefWidth="150.0" text="Feedback" />
    </children>
 </AnchorPane>
