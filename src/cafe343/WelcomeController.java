@@ -19,6 +19,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 
 /**
@@ -31,11 +37,22 @@ public class WelcomeController implements Initializable {
     private Button customerButton;
     @FXML
     private Button EmployeeButton;
+    @FXML
+    private AnchorPane backgroundPane;
+    
     private static Customer customer;
     private int n = 0;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //CREATES NEW BACKGROUND IMAGE
+        BackgroundImage myBG= new BackgroundImage(new Image("resources/bg.png"),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
+        
+        //SETS BACKGROUND
+        backgroundPane.setBackground(new Background(myBG));
+        
+        //SET ICON
         EmployeeButton.setGraphic(new ImageView(new Image("resources/employee_icon.png")));
     }    
 
