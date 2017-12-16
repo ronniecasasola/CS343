@@ -107,27 +107,17 @@
                         <Font name="System Regular" size="32.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tableViewJobs" layoutX="65.0" layoutY="123.0" prefHeight="500.0" prefWidth="860.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="123.0">
+                  <TableView fx:id="tableViewOrders" layoutX="152.0" layoutY="120.0" prefHeight="516.0" prefWidth="721.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="151.0" AnchorPane.topAnchor="120.0">
                      <columns>
-                        <TableColumn prefWidth="105.0" text="Table">
+                        <TableColumn fx:id="tableNumCol" prefWidth="164.33331298828125" text="Table Number">
                            <cellValueFactory>
                               <PropertyValueFactory property="jobNameProperty" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="122.33331298828125" text="Type" />
-                        <TableColumn minWidth="0.0" prefWidth="260.99993896484375" text="Menu Item">
+                        <TableColumn fx:id="orderNumCol" prefWidth="164.6666259765625" text="Order Number" />
+                        <TableColumn fx:id="nameCol" minWidth="0.0" prefWidth="391.66668701171875" text="Menu Item">
                            <cellValueFactory>
                               <PropertyValueFactory property="jobSalaryProperty" />
-                           </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="411.99993896484375" text="Special Instructions">
-                           <cellValueFactory>
-                              <PropertyValueFactory property="jobDepartmentProperty" />
-                           </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="248.0" text="Status">
-                           <cellValueFactory>
-                              <PropertyValueFactory property="jobDepartmentProperty" />
                            </cellValueFactory>
                         </TableColumn>
                      </columns>
