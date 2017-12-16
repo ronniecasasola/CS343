@@ -46,12 +46,9 @@ public class DrinkController implements Initializable {
     @FXML
     private Button orderHistoryButton;
     @FXML
-    private Button checkoutButton;
-    @FXML
     private Button serverButton;
     @FXML
     private GridPane gridPaneTables;
-    @FXML
     private TextField CustomerMenuDrinkDescriptionProperty;
     
     private static ArrayList<MenuObject> menuObjectList;
@@ -61,6 +58,8 @@ public class DrinkController implements Initializable {
     private int index; //index of the items in the array
 
     private static Customer customer;
+    @FXML
+    private TextField CustomerMenuDrinksDescriptionProperty;
     
     /*
     * uses the the size of the list of menu objects to store an image
@@ -118,7 +117,7 @@ public class DrinkController implements Initializable {
             splitMenuButtonTable.setContentDisplay(ContentDisplay.TOP);
 
             splitMenuButtonTable.setOnAction(event -> {
-               CustomerMenuDrinkDescriptionProperty.setText(objectDescription);
+               CustomerMenuDrinksDescriptionProperty.setText(objectDescription);
                
             });
 
