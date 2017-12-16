@@ -9,32 +9,25 @@
 
 <AnchorPane id="AnchorPane" fx:id="backgroundPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe343.WelcomeController">
    <children>
-      <Label fx:id="titleLabel" layoutX="176.0" layoutY="42.0" prefHeight="189.0" prefWidth="688.0" text="Welcome to Cafe343" textAlignment="CENTER">
+      <Label fx:id="titleLabel" layoutX="177.0" layoutY="104.0" prefHeight="189.0" prefWidth="688.0" text="Welcome to Cafe343" textAlignment="CENTER">
          <font>
             <Font name="Britannic Bold" size="72.0" />
          </font>
       </Label>
-      <Button fx:id="customerButton" layoutX="174.0" layoutY="283.0" mnemonicParsing="false" onAction="#handleCustomerButtonAction" prefHeight="165.0" prefWidth="692.0" style="-fx-background-color: #99ccff;" text="I am a customer">
+      <Button fx:id="customerButton" layoutX="166.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleCustomerButtonAction" prefHeight="165.0" prefWidth="692.0" style="-fx-background-color: #99ccff;" text="Click Here to Continue" textAlignment="CENTER">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" offsetX="3.0" offsetY="3.0" />
          </effect>
          <font>
-            <Font name="Berlin Sans FB" size="64.0" />
+            <Font name="Vladimir Script" size="71.0" />
          </font>
       </Button>
-      <Label fx:id="titleLabel1" layoutX="264.0" layoutY="198.0" prefHeight="66.0" prefWidth="533.0" text="Come relax and take a load off, just tap the screen to continue" textAlignment="CENTER">
+      <Label fx:id="titleLabel1" layoutX="371.0" layoutY="293.0" prefHeight="66.0" prefWidth="300.0" text="Come relax and take a load off  :-)" textAlignment="CENTER">
          <font>
             <Font name="Monotype Corsiva" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="EmployeeButton" layoutX="176.0" layoutY="476.0" mnemonicParsing="false" onAction="#handleEmployeeButtonAction" prefHeight="165.0" prefWidth="688.0" style="-fx-background-color: #99ccff;" text="I am an employee">
-         <effect>
-            <DropShadow blurType="ONE_PASS_BOX" offsetX="3.0" offsetY="3.0" />
-         </effect>
-         <font>
-            <Font name="Berlin Sans FB" size="64.0" />
-         </font>
-      </Button>
+      <Button fx:id="EmployeeButton" contentDisplay="CENTER" layoutX="469.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleEmployeeButtonAction" prefHeight="60.0" prefWidth="103.0" />
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
