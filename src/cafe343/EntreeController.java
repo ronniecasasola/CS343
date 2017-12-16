@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,6 +28,7 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,11 +47,9 @@ public class EntreeController implements Initializable {
     @FXML
     private Button orderHistoryButton;
     @FXML
-    private Button checkoutButton;
-    @FXML
     private Button serverButton;
     @FXML
-    private TextField CustomerMenuEntreeDescriptionProperty;
+    private TextArea CustomerMenuEntreeDescriptionProperty;
     @FXML
     private GridPane gridPaneTables;
 
@@ -124,7 +124,9 @@ public class EntreeController implements Initializable {
             splitMenuButtonTable.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
             //Sets the Icon on top of the text.
             splitMenuButtonTable.setContentDisplay(ContentDisplay.TOP);
-
+            //sets alingment of itemName, price, and picture
+            splitMenuButtonTable.setAlignment(Pos.CENTER);
+            
             splitMenuButtonTable.setOnAction(event -> {
                CustomerMenuEntreeDescriptionProperty.setText(objectDescription);
                
