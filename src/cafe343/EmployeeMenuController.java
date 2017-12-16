@@ -8,11 +8,18 @@ package cafe343;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +39,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -84,6 +92,19 @@ public class EmployeeMenuController implements Initializable {
     @FXML
     private Button tabPaneSignOutButton;
     
+    @FXML
+    private TableView tableViewOrders;
+    
+    @FXML
+    private TableColumn<CustomerOrder, Integer> tableNumCol;
+    
+    @FXML
+    private TableColumn<CustomerOrder, Integer> orderNumCol;
+    
+    @FXML
+    private TableColumn<CustomerOrder, String> nameCol;
+    
+    private ObservableList<CustomerOrder> history = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -94,9 +115,13 @@ public class EmployeeMenuController implements Initializable {
        
         //Calling refresh to all tables at start.
         tableRefresh();
-        
-
-        //Initializing Root TabPane.
+        try {
+            orderRefresh();
+            
+            //Initializing Root TabPane.
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployeeMenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
       
 
         //Initializing Main Panel Tab.
@@ -106,9 +131,7 @@ public class EmployeeMenuController implements Initializable {
 
         //Initializing Restaurant Menu Tab.
         
-        
-
-       
+  
     } 
     
     @FXML
@@ -286,6 +309,40 @@ public class EmployeeMenuController implements Initializable {
     private void setButtonAddTable(Button buttonAddTable) {
         buttonAddTable.setOnAction(event -> tableCreate());
         this.buttonAddTable = buttonAddTable;
+    }
+    
+    public void orderRefresh() throws ClassNotFoundException{
+        
+         try {
+                //Connecting with database.
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
+                Connection connection = DriverManager.getConnection( DatabaseConnection.DB_URL );
+                Statement statement = connection.createStatement();
+                //Returning the Usernames from database that are same with entered text.
+                ResultSet resultSet = statement.executeQuery("SELECT ORDERID, TABLEID, OBJECTNAME FROM CUSTOMERORDER ");
+                System.out.println(resultSet.toString());
+                
+                //Checking any Username is found from database that are same with entered text.
+                while (resultSet.next()){
+                    CustomerOrder createdOrder = new CustomerOrder(resultSet.getInt("ORDERID"), resultSet.getInt("TABLEID"), resultSet.getString("OBJECTNAME"));
+                        history.add(createdOrder);
+                
+            } 
+             }
+      
+                    
+                    
+                
+                
+                
+                  catch (SQLException e) {
+                e.printStackTrace();
+            }
+        tableNumCol.setCellValueFactory(cellData -> cellData.getValue().getTableIDProperty().asObject());
+        nameCol.setCellValueFactory(cellData -> cellData.getValue().getObjectNameProperty());
+        orderNumCol.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty().asObject());
+        tableViewOrders.setItems(history);
+        
     }
 
     private void tableRefresh() {
