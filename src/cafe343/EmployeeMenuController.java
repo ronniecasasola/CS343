@@ -171,14 +171,13 @@ public class EmployeeMenuController implements Initializable {
                 && rowIndex <= gridPaneTables.getRowConstraints().size() - 1){
 
             //Menu Items for Split Menu Button
-            MenuItem menuObjectAddOrder = new MenuItem("Add Order");
             MenuItem menuObjectSetAvailable = new MenuItem("Set Available");
-            MenuItem menuObjectSetUnavailable = new MenuItem("Set Unavailable");
-            MenuItem menuObjectSetBooked = new MenuItem("Set Booked");
+            MenuItem menuObjectSetOccupied = new MenuItem("Set Occupied");
+            MenuItem menuObjectSetBooked = new MenuItem("Server Call Received");
 
             //Initializing Button for GridPane.
-            final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuObjectAddOrder, menuObjectSetAvailable,
-                                                                    menuObjectSetUnavailable, menuObjectSetBooked);
+            final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuObjectSetAvailable,
+                                                                    menuObjectSetOccupied, menuObjectSetBooked);
             //Setting appearance of the table buttons.
             splitMenuButtonTable.setText("Table " + tableID);
             splitMenuButtonTable.setGraphic(new ImageView(imageTableIcon));
@@ -196,88 +195,12 @@ public class EmployeeMenuController implements Initializable {
                 String tableID = splitMenuButtonTable.getId();
                 
             });
-
-            menuObjectAddOrder.setOnAction(event -> {
-                //Creating the Add Order Dialog.
-                Dialog addOrderDialog = new Dialog();
-                addOrderDialog.setTitle("Add Order");
-
-                //Setting "OK" Button type.
-                ButtonType buttonTypeAdd = new ButtonType("Add", ButtonBar.ButtonData.OK_DONE);
-                //Adding Button types "OK" and "CANCEL".
-                addOrderDialog.getDialogPane().getButtonTypes().addAll(buttonTypeAdd, ButtonType.CANCEL);
-
-                //Creating the GridPane.
-                GridPane gridPane = new GridPane();
-                gridPane.setHgap(25);
-                gridPane.setVgap(15);
-                gridPane.setPadding(new Insets(20, 150, 10, 10));
-
-                //ComboBox for MenuObjects Name.
-                ComboBox<String> comboBoxMenuObjectsName = new ComboBox<>();
-                comboBoxMenuObjectsName.setPrefWidth(150);
-                //Adding MenuObjects Names to ComboBox.
-                comboBoxMenuObjectsName.getItems().addAll(MenuObject.fillComboBoxMeal());
-                comboBoxMenuObjectsName.getSelectionModel().selectFirst();
-                comboBoxMenuObjectsName.setOnMousePressed(event1 -> {
-                    //When the ComboBox is clicked, delete and add MenuObjects Names again to update changes.
-                    comboBoxMenuObjectsName.getItems().clear();
-                    comboBoxMenuObjectsName.getItems().addAll(MenuObject.fillComboBoxMeal());
-                    comboBoxMenuObjectsName.getSelectionModel().selectFirst();
-                });
-
-                //TextField for TableID.
-                TextField textFieldTableID = new TextField();
-                textFieldTableID.setPrefWidth(150);
-                textFieldTableID.setEditable(false);
-                textFieldTableID.setDisable(true);
-                textFieldTableID.setText(splitMenuButtonTable.getId());
-
-                //Adding Nodes to GridPane.
-                gridPane.add(new Label("Meal"), 1, 0);
-                gridPane.add(comboBoxMenuObjectsName, 0, 0);
-                gridPane.add(new Label("Table"),1,1);
-                gridPane.add(textFieldTableID,0,1);
-
-                addOrderDialog.getDialogPane().setContent(gridPane);
-
-                //Adding application_icon to Stage.
-                Stage addOrderStage = (Stage) addOrderDialog.getDialogPane().getScene().getWindow();
-                addOrderStage.getIcons().add(new Image("resources/application_icon.png"));
-
-                //Getting result depending on the Button Type clicked. (Add or Cancel)
-                Optional<ButtonType> result = addOrderDialog.showAndWait();
-
-                if (result.get() == buttonTypeAdd){
-                    //Add Button is clicked. Creating Order and closing Dialog.
-
-                    //Order TableID
-                    String tableID = textFieldTableID.getText();
-                    //Order MenuObjects Name
-                    String menuObjectName = comboBoxMenuObjectsName.getValue();
-                    //Order Date
-                    String orderDate = String.valueOf(LocalDateTime.now());
-
-                    
-
-                    //Creating Order Added Dialog.
-                    Alert alertOrderAdded = new Alert(Alert.AlertType.INFORMATION);
-                    alertOrderAdded.setTitle("Order");
-                    alertOrderAdded.setHeaderText(null);
-                    alertOrderAdded.setContentText("The order has been added.");
-
-                    //Adding application_icon to Order Added Dialog.
-                    Stage orderCreatedStage = (Stage) alertOrderAdded.getDialogPane().getScene().getWindow();
-                    orderCreatedStage.getIcons().add(new Image("resources/application_icon.png"));
-
-                    
-                    alertOrderAdded.showAndWait();
-                }
-            });
+            
+            //Addorder was redacted here
 
             menuObjectSetAvailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;"));
 
-            menuObjectSetUnavailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
+            menuObjectSetOccupied.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
 
             menuObjectSetBooked.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FFFF00;"));
 
@@ -311,6 +234,10 @@ public class EmployeeMenuController implements Initializable {
         this.buttonAddTable = buttonAddTable;
     }
     
+    /**
+     * Updates the data of orders input from the customer side program
+     * @throws ClassNotFoundException 
+     */
     public void orderRefresh() throws ClassNotFoundException{
         
          try {
@@ -330,10 +257,6 @@ public class EmployeeMenuController implements Initializable {
             } 
              }
       
-                    
-                    
-                
-                
                 
                   catch (SQLException e) {
                 e.printStackTrace();
@@ -345,11 +268,14 @@ public class EmployeeMenuController implements Initializable {
         
     }
 
+    /**
+     * Updates the amount of tables based on the value from the Tables class
+     */
     private void tableRefresh() {
-        //Add Tables until tableID is equal to TABLES in database.
+        //Add Tables until tableID is equal to the number of available tables
         while (tableID <= Table.listTable()){
 
-            //Checking the columnIndex initially to see if it equals to the limit.
+            //Checks the columns initially to see if it is equal to the max
             if (columnIndex == gridPaneTables.getColumnConstraints().size()){
                 if (rowIndex < gridPaneTables.getRowConstraints().size() - 1){
                     //Resetting the columnIndex and incrementing rowIndex.
@@ -362,14 +288,13 @@ public class EmployeeMenuController implements Initializable {
                     && rowIndex <= gridPaneTables.getRowConstraints().size() - 1) {
 
                 //Menu Items for Split Menu Button
-                MenuItem menuObjectAddOrder = new MenuItem("Add Order");
                 MenuItem menuObjectSetAvailable = new MenuItem("Set Available");
-                MenuItem menuObjectSetUnavailable = new MenuItem("Set Unavailable");
+                MenuItem menuObjectSetOccupied = new MenuItem("Occupied");
                 MenuItem menuObjectSetBooked = new MenuItem("Set Booked");
 
                 //Initializing Button for GridPane.
-                final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuObjectAddOrder, menuObjectSetAvailable,
-                                                                                menuObjectSetUnavailable, menuObjectSetBooked);
+                final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuObjectSetAvailable,
+                                                                                menuObjectSetOccupied, menuObjectSetBooked);
                 //Setting appearance of the table buttons.
                 splitMenuButtonTable.setText("Table " + tableID);
                 splitMenuButtonTable.setGraphic(new ImageView(imageTableIcon));
@@ -386,90 +311,10 @@ public class EmployeeMenuController implements Initializable {
                     String tableID = splitMenuButtonTable.getId();
                     
                 });
-
-                menuObjectAddOrder.setOnAction(event -> {
-                    //Creating the Add Order Dialog.
-                    Dialog addOrderDialog = new Dialog();
-                    addOrderDialog.setTitle("Add Order");
-
-                    //Setting "OK" Button type.
-                    ButtonType buttonTypeAdd = new ButtonType("Add", ButtonBar.ButtonData.OK_DONE);
-                    //Adding Button types "OK" and "CANCEL".
-                    addOrderDialog.getDialogPane().getButtonTypes().addAll(buttonTypeAdd, ButtonType.CANCEL);
-
-                    //Creating the GridPane.
-                    GridPane gridPane = new GridPane();
-                    gridPane.setHgap(25);
-                    gridPane.setVgap(15);
-                    gridPane.setPadding(new Insets(20, 150, 10, 10));
-
-                    //ComboBox for MenuObjects Name.
-                    ComboBox<String> comboBoxMealName = new ComboBox<>();
-                    comboBoxMealName.setPrefWidth(150);
-                    //Adding MenuObjects Names to ComboBox.
-                    comboBoxMealName.getItems().addAll(MenuObject.fillComboBoxMeal());
-                    comboBoxMealName.getSelectionModel().selectFirst();
-                    comboBoxMealName.setOnMousePressed(event1 -> {
-                        //When the ComboBox is clicked, delete and add MenuObjects Names again to update changes.
-                        comboBoxMealName.getItems().clear();
-                        comboBoxMealName.getItems().addAll(MenuObject.fillComboBoxMeal());
-                        comboBoxMealName.getSelectionModel().selectFirst();
-                    });
-
-                    //TextField for TableID.
-                    TextField textFieldTableID = new TextField();
-                    textFieldTableID.setPrefWidth(150);
-                    textFieldTableID.setEditable(false);
-                    textFieldTableID.setDisable(true);
-                    textFieldTableID.setText(splitMenuButtonTable.getId());
-
-                    //Adding Nodes to GridPane.
-                    gridPane.add(new Label("Meal"), 1, 0);
-                    gridPane.add(comboBoxMealName, 0, 0);
-                    gridPane.add(new Label("Table"),1,1);
-                    gridPane.add(textFieldTableID,0,1);
-
-                    addOrderDialog.getDialogPane().setContent(gridPane);
-
-                    //Adding application_icon to Stage.
-                    Stage addOrderStage = (Stage) addOrderDialog.getDialogPane().getScene().getWindow();
-                    addOrderStage.getIcons().add(new Image("resources/application_icon.png"));
-
-                    //Getting result depending on the Button Type clicked. (Add or Cancel)
-                    Optional<ButtonType> result = addOrderDialog.showAndWait();
-
-                    if (result.get() == buttonTypeAdd){
-                        //Add Button is clicked. Creating Order and closing Dialog.
-
-                        //Order TableID
-                        String tableID = textFieldTableID.getText();
-                        //Order MenuObjects Name
-                        String menuObjectName = comboBoxMealName.getValue();
-                        //Order Date
-                        String orderDate = String.valueOf(LocalDateTime.now());
-
-                        //Creating Order in the database.
-                       
-
-                        //Creating Order Added Dialog.
-                        Alert alertOrderAdded = new Alert(Alert.AlertType.INFORMATION);
-                        alertOrderAdded.setTitle("Order");
-                        alertOrderAdded.setHeaderText(null);
-                        alertOrderAdded.setContentText("The order has been added.");
-
-                        //Adding application_icon to Order Added Dialog.
-                        Stage orderCreatedStage = (Stage) alertOrderAdded.getDialogPane().getScene().getWindow();
-                        orderCreatedStage.getIcons().add(new Image("resources/application_icon.png"));
-
-                        
-
-                        alertOrderAdded.showAndWait();
-                    }
-                });
-
+                
                 menuObjectSetAvailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;"));
 
-                menuObjectSetUnavailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
+                menuObjectSetOccupied.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
 
                 menuObjectSetBooked.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FFFF00;"));
 

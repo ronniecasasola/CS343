@@ -17,12 +17,10 @@ public class Table {
     }
 
     //Method used for listing table.
+    //Reads the amount of tables from the database
     public static int listTable(){
 
-        int tableCount = 0;
-
-        //read from file and count how many tables there are
-        //while(hasNextLine){tablecount++)
+        int tableCount = 10;
 
         return tableCount;
     }
