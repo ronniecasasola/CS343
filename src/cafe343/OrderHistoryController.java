@@ -80,9 +80,9 @@ public class OrderHistoryController implements Initializable {
         orderHistory.setItems(history);
         
         DecimalFormat df = new DecimalFormat("#.00");
-        subtotal.setText(df.format(customer.getTotal()));
-        tax.setText(df.format(customer.getTotal()*0.1025));
-        total.setText(df.format(customer.getTotal()+customer.getTotal()*0.1025));
+        subtotal.setText(df.format(customer.getSubTotal()));
+        tax.setText(df.format(customer.getSubTotal()*0.1025));
+        total.setText(df.format(customer.getTotal()));
     }  
     
     
