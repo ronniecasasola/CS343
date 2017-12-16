@@ -1,6 +1,6 @@
-Coke; 1.75; .
-Sprite; 1.75; .
-Pepsi; 1.75; .
-Lemonade; 2.00; .
-Coffee; 2.00; .
-Water; 0.00; .
+Coke; 1.75; Fountain soda 20oz.
+Sprite; 1.75; Fountain soda 20oz.
+Pepsi; 1.75; Fountain soda 20oz.
+Lemonade; 2.00; Pink lemonade 20oz.
+Coffee; 2.00; Freshly made 16oz cup.
+Water; 0.00; Free 20oz cup of water.
