@@ -3,7 +3,10 @@ package cafe343;
 import java.sql.*;
 
 public class Table {
-
+    private int tableID;
+    private String status;
+  
+    
     //Method used for creating table.
     public static void createTable(int tableID){
 
@@ -14,15 +17,6 @@ public class Table {
     public static void deleteTable(int tableID){
 
         
-    }
-
-    //Method used for listing table.
-    //Reads the amount of tables from the database
-    public static int listTable(){
-
-        int tableCount = 10;
-
-        return tableCount;
     }
 
 }

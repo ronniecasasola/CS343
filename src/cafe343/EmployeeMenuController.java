@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cafe343;
-
 
 import java.io.IOException;
 import java.net.URL;
@@ -69,43 +63,34 @@ public class EmployeeMenuController implements Initializable {
     public TabPane tabPaneMainWindow;
     
     //**********MAIN PANEL TAB**********
-
-
     @FXML
     private GridPane gridPaneTables;
-
-    //Table ID for Buttons.
-    private int tableID = 1;
-    //Column Index and Row Index for adding Buttons to GridPane.
-    private int columnIndex = 0;
-    private int rowIndex = 0;
-
     @FXML
     private Button buttonAddTable;
-
     @FXML
     private Button buttonDeleteTable;
-
     @FXML
     private Button buttonRefreshTable;
-    
     @FXML
     private Button tabPaneSignOutButton;
-    
     @FXML
     private TableView tableViewOrders;
     
     @FXML
     private TableColumn<CustomerOrder, Integer> tableNumCol;
-    
     @FXML
     private TableColumn<CustomerOrder, Integer> orderNumCol;
-    
     @FXML
     private TableColumn<CustomerOrder, String> nameCol;
     
     private ObservableList<CustomerOrder> history = FXCollections.observableArrayList();
-
+    //Table ID for Buttons.
+    private int tableID = 1;
+    private int tableCount;
+    //Column Index and Row Index for adding Buttons to GridPane.
+    private int columnIndex = 0;
+    private int rowIndex = 0;
+    
     /**
      * Initializes the controller class.
      */
@@ -114,23 +99,21 @@ public class EmployeeMenuController implements Initializable {
         
        
         //Calling refresh to all tables at start.
-        tableRefresh();
+        
         try {
             orderRefresh();
-            
+            listTable();
+            tableRefresh();
             //Initializing Root TabPane.
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(EmployeeMenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
 
         //Initializing Main Panel Tab.
         
         setButtonAddTable(buttonAddTable);
         
-
         //Initializing Restaurant Menu Tab.
-        
   
     } 
     
@@ -199,9 +182,7 @@ public class EmployeeMenuController implements Initializable {
             //Addorder was redacted here
 
             menuObjectSetAvailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;"));
-
             menuObjectSetOccupied.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
-
             menuObjectSetBooked.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FFFF00;"));
 
             //Adding the created Button to GridPane and incrementing columnIndex.
@@ -268,12 +249,42 @@ public class EmployeeMenuController implements Initializable {
         
     }
 
+    
+       //Method used for listing table.
+    //Reads the amount of tables from the database
+
+    private void listTable() throws ClassNotFoundException{
+
+        try {
+                //Connecting with database.
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
+                Connection connection = DriverManager.getConnection( DatabaseConnection.DB_URL );
+                Statement statement = connection.createStatement();
+                //Creates a query
+                ResultSet resultSet = statement.executeQuery("Select COUNT(tableID) AS total from CustomerTable");
+                if(resultSet.next()){
+                    tableCount = resultSet.getInt("total");
+                    System.out.println(tableCount);
+                }
+                
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        catch(ClassNotFoundException f){
+            f.printStackTrace();
+        }
+
+    }
+
+    
+    
     /**
      * Updates the amount of tables based on the value from the Tables class
      */
-    private void tableRefresh() {
+    private void tableRefresh(){
         //Add Tables until tableID is equal to the number of available tables
-        while (tableID <= Table.listTable()){
+        while (tableID <= tableCount){
 
             //Checks the columns initially to see if it is equal to the max
             if (columnIndex == gridPaneTables.getColumnConstraints().size()){
@@ -290,7 +301,7 @@ public class EmployeeMenuController implements Initializable {
                 //Menu Items for Split Menu Button
                 MenuItem menuObjectSetAvailable = new MenuItem("Set Available");
                 MenuItem menuObjectSetOccupied = new MenuItem("Occupied");
-                MenuItem menuObjectSetBooked = new MenuItem("Set Booked");
+                MenuItem menuObjectSetBooked = new MenuItem("Server Call Received");
 
                 //Initializing Button for GridPane.
                 final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuObjectSetAvailable,
@@ -301,6 +312,7 @@ public class EmployeeMenuController implements Initializable {
                 splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;");
                 //Setting Button's Text as TABLE_ID from database.
                 splitMenuButtonTable.setId(String.valueOf(tableID));
+                
                 //Setting Button's size to MAX for forcing it to fit GridPane cells.
                 splitMenuButtonTable.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
                 //Sets the Icon on top of the text.
@@ -309,13 +321,11 @@ public class EmployeeMenuController implements Initializable {
                 splitMenuButtonTable.setOnAction(event -> {
                     //Order TableID
                     String tableID = splitMenuButtonTable.getId();
-                    
+                   
                 });
                 
                 menuObjectSetAvailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;"));
-
                 menuObjectSetOccupied.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
-
                 menuObjectSetBooked.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FFFF00;"));
 
                 //Adding the created Button to GridPane and incrementing columnIndex.
@@ -327,8 +337,4 @@ public class EmployeeMenuController implements Initializable {
             }
         }
     }
-    
-    
-      
-    
 }
