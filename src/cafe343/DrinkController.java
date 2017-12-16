@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,6 +29,7 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -49,7 +51,6 @@ public class DrinkController implements Initializable {
     private Button serverButton;
     @FXML
     private GridPane gridPaneTables;
-    private TextField CustomerMenuDrinkDescriptionProperty;
     
     private static ArrayList<MenuObject> menuObjectList;
     private ArrayList<Image> listOfImages;
@@ -59,7 +60,7 @@ public class DrinkController implements Initializable {
 
     private static Customer customer;
     @FXML
-    private TextField CustomerMenuDrinksDescriptionProperty;
+    private TextArea CustomerMenuDrinksDescriptionProperty;
     
     /*
     * uses the the size of the list of menu objects to store an image
@@ -115,7 +116,9 @@ public class DrinkController implements Initializable {
             splitMenuButtonTable.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
             //Sets the Icon on top of the text.
             splitMenuButtonTable.setContentDisplay(ContentDisplay.TOP);
-
+            //sets alingment of itemName, price, and picture
+            splitMenuButtonTable.setAlignment(Pos.CENTER);
+            
             splitMenuButtonTable.setOnAction(event -> {
                CustomerMenuDrinksDescriptionProperty.setText(objectDescription);
                

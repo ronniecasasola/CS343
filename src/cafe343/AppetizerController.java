@@ -24,6 +24,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -38,6 +39,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -56,13 +58,11 @@ public class AppetizerController implements Initializable {
     @FXML
     private Button orderHistoryButton;
     @FXML
-    private Button checkoutButton;
-    @FXML
     private Button serverButton;
     @FXML
     private GridPane gridPaneTables;
      @FXML
-    private TextField CustomerMenuAppetizersDescriptionProperty;
+    private TextArea CustomerMenuAppetizersDescriptionProperty;
      
     private static ArrayList<MenuObject> menuObjectList;
     private ArrayList<Image> listOfImages;
@@ -126,7 +126,7 @@ public class AppetizerController implements Initializable {
             splitMenuButtonTable.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
             //Sets the Icon on top of the text.
             splitMenuButtonTable.setContentDisplay(ContentDisplay.TOP);
-
+            
             splitMenuButtonTable.setOnAction(event -> {
                CustomerMenuAppetizersDescriptionProperty.setText(objectDescription);
                
