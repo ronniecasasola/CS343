@@ -31,7 +31,7 @@ public class Customer
     
     private  double subTotal;
     private double total;
-    private boolean hasPaid;
+    private String status;
 
 //    private int numberOfPeople; //number of people in this table
 //    private String seatedTime; //seated time for this customer
@@ -41,7 +41,7 @@ public class Customer
     {
         this.tableNumber = tableNumber;
         subTotal = 0;
-        hasPaid = false;
+        status = "occupied";
         orders = new ArrayList<MenuObject>(); 
         subTotal = 0;
         
@@ -51,7 +51,7 @@ public class Customer
                 Connection connection = DriverManager.getConnection( DatabaseConnection.DB_URL );
                 Statement statement = connection.createStatement();
 
-                statement.executeUpdate("UPDATE CustomerTable SET tableID = " + tableNumber + "," + "totalCost = " + subTotal + ", hasPaid = " + hasPaid + " where tableID = " + tableNumber);
+                statement.executeUpdate("UPDATE CustomerTable SET tableID = " + tableNumber + "," + "totalCost = " + subTotal + ", tablestatus = " + "'" + status + "'" + " where tableID = " + tableNumber);
             
             statement.close();
             connection.close();
@@ -104,7 +104,7 @@ public class Customer
     
     public double splitByPeople(int numberOfPeople)
     {
-        return totalCost*1.1025/numberOfPeople;
+        return total*1.1025/numberOfPeople;
 
     }
     
