@@ -126,6 +126,8 @@ public class AppetizerController implements Initializable {
             splitMenuButtonTable.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
             //Sets the Icon on top of the text.
             splitMenuButtonTable.setContentDisplay(ContentDisplay.TOP);
+            //sets alingment of itemName, price, and picture
+            splitMenuButtonTable.setAlignment(Pos.CENTER);
             
             splitMenuButtonTable.setOnAction(event -> {
                CustomerMenuAppetizersDescriptionProperty.setText(objectDescription);
