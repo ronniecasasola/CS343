@@ -29,7 +29,8 @@ public class Customer
     private String seatedTime; //seated time for this customer
     private ArrayList<MenuObject> orders; //arraylist of menu item orders
     
-    private  double totalCost;
+    private  double subTotal;
+    private double total;
     private boolean hasPaid;
 
 //    private int numberOfPeople; //number of people in this table
@@ -39,10 +40,10 @@ public class Customer
     public Customer(int tableNumber) throws ClassNotFoundException
     {
         this.tableNumber = tableNumber;
-        totalCost = 0;
+        subTotal = 0;
         hasPaid = false;
         orders = new ArrayList<MenuObject>(); 
-        totalCost = 0;
+        subTotal = 0;
         
          try {
                 //Connecting with database.
@@ -50,7 +51,7 @@ public class Customer
                 Connection connection = DriverManager.getConnection( DatabaseConnection.DB_URL );
                 Statement statement = connection.createStatement();
 
-                statement.executeUpdate("UPDATE CustomerTable SET tableID = " + tableNumber + "," + "totalCost = " + totalCost + ", hasPaid = " + hasPaid + " where tableID = " + tableNumber);
+                statement.executeUpdate("UPDATE CustomerTable SET tableID = " + tableNumber + "," + "totalCost = " + subTotal + ", hasPaid = " + hasPaid + " where tableID = " + tableNumber);
             
             statement.close();
             connection.close();
@@ -66,7 +67,7 @@ public class Customer
     
     public void makeOrder(MenuObject item) throws ClassNotFoundException
     {
-        totalCost += item.getMenuObjectPriceProperty();
+        subTotal += item.getMenuObjectPriceProperty();
         
         try {
                 //Connecting with database.
@@ -75,7 +76,7 @@ public class Customer
                 Statement statement = connection.createStatement();
 
                 statement.executeUpdate("INSERT INTO CustomerOrder(tableID, objectName) values (" + tableNumber + ", '" + item.getMenuObjectNameProperty() + "')" );
-                statement.executeUpdate("UPDATE CustomerTable SET totalCost = " + totalCost + " where tableID = " + tableNumber);
+                statement.executeUpdate("UPDATE CustomerTable SET totalCost = " + subTotal + " where tableID = " + tableNumber);
                 statement.close();
                 connection.close();
              }catch (SQLException e) {
@@ -87,8 +88,13 @@ public class Customer
     
    
     
-    public double getTotal(){
-        return totalCost;
+    public double getSubTotal(){
+        return subTotal;
+    }
+    
+    public double getTotal() {
+        total = subTotal + (subTotal * 0.1025); 
+        return total;
     }
     
     public ArrayList<MenuObject> viewHistory()
@@ -98,7 +104,7 @@ public class Customer
     
     public double splitByPeople(int numberOfPeople)
     {
-        return totalCost*0.1025/numberOfPeople;
+        return total/numberOfPeople;
     }
     
     public int callServer()
