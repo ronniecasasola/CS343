@@ -64,7 +64,8 @@ public class CheckOutController implements Initializable {
         numberOfPeople = 1;
         numberOfPeopleTextField.setText(Integer.toString(numberOfPeople));
         DecimalFormat df = new DecimalFormat("#.00");
-        total.setText( df.format(customer.getTotal()));
+        total.setText( df.format(customer.getTotal()*1.1025));
+
     }    
 
     /**
@@ -98,7 +99,8 @@ public class CheckOutController implements Initializable {
     {
         pricePerCustomer = customer.splitByPeople(Integer.parseInt(numberOfPeopleTextField.getText()));
         DecimalFormat df = new DecimalFormat("#.00");
-        output.setText("Each person pays $"+ df.format(pricePerCustomer));
+        output.setText("Each person pays $"+df.format(pricePerCustomer));
+
     }
 
     //when subtract button is click, the text area decrease the number of people
