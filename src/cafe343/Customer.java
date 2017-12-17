@@ -104,7 +104,7 @@ public class Customer
     
     public double splitByPeople(int numberOfPeople)
     {
-        return totalCost*1.1025/numberOfPeople;
+        return total*1.1025/numberOfPeople;
 
     }
     
