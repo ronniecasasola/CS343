@@ -9,6 +9,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -217,7 +221,31 @@ public class AppetizerController implements Initializable {
 //    }
     
     @FXML
-    private void handleServerButton(ActionEvent event) throws IOException {
+    private void handleServerButton(ActionEvent event) throws IOException, ClassNotFoundException {
+            Alert errorAlert = new Alert(Alert.AlertType.INFORMATION);
+            errorAlert.setTitle("Calling Server");
+            errorAlert.setHeaderText("Please wait a moment");
+            errorAlert.setContentText("A server will arrive to assist you soon");
+            //Adding error_icon to Error Window.
+            Stage errorStage = (Stage) errorAlert.getDialogPane().getScene().getWindow();
+            errorStage.getIcons().add(new Image("resources/error_icon.png"));
+            errorAlert.showAndWait();
+            
+            String status = "Alert";
+            
+            try {
+                //Connecting with database.
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
+                Connection connection = DriverManager.getConnection( DatabaseConnection.DB_URL );
+                Statement statement = connection.createStatement();
+
+                statement.executeUpdate("UPDATE CustomerTable SET tablestatus = " + "'" + status + "'" + " where tableID = " + customer.getTableNumber());
+            
+            statement.close();
+            connection.close();
+             }catch (SQLException e) {
+                e.printStackTrace();
+            }
     }
     
     /**

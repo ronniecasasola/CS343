@@ -90,13 +90,13 @@ public class EmployeeMenuController implements Initializable {
     //Column Index and Row Index for adding Buttons to GridPane.
     private int columnIndex = 0;
     private int rowIndex = 0;
-    
+    private SplitMenuButton TableButtonArray[];
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        TableButtonArray = new SplitMenuButton[11]; //Initializes an array of tables
        
         //Calling refresh to all tables at start.
         
@@ -301,11 +301,11 @@ public class EmployeeMenuController implements Initializable {
                 //Menu Items for Split Menu Button
                 MenuItem menuObjectSetAvailable = new MenuItem("Set Available");
                 MenuItem menuObjectSetOccupied = new MenuItem("Occupied");
-                MenuItem menuObjectSetBooked = new MenuItem("Server Call Received");
-
+                MenuItem menuObjectSetAlert = new MenuItem("Server Call Received");
+                
                 //Initializing Button for GridPane.
                 final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuObjectSetAvailable,
-                                                                                menuObjectSetOccupied, menuObjectSetBooked);
+                                                                                menuObjectSetOccupied, menuObjectSetAlert);
                 //Setting appearance of the table buttons.
                 splitMenuButtonTable.setText("Table " + tableID);
                 splitMenuButtonTable.setGraphic(new ImageView(imageTableIcon));
@@ -326,7 +326,7 @@ public class EmployeeMenuController implements Initializable {
                 
                 menuObjectSetAvailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;"));
                 menuObjectSetOccupied.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
-                menuObjectSetBooked.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FFFF00;"));
+                menuObjectSetAlert.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FFFF00;"));
 
                 //Adding the created Button to GridPane and incrementing columnIndex.
                 gridPaneTables.add(splitMenuButtonTable, columnIndex, rowIndex);
