@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #99ccff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe343.OrderHistoryController">
+<AnchorPane id="AnchorPane" fx:id="backgroundPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe343.OrderHistoryController">
    <children>
       <Label layoutX="349.0" layoutY="14.0" prefHeight="91.0" prefWidth="326.0" text="My Order">
          <font>
@@ -25,17 +25,17 @@
           <TableColumn fx:id="priceCol" prefWidth="401.0" text="Price" />
         </columns>
       </TableView>
-      <Text layoutX="112.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal:">
+      <Text fill="WHITE" layoutX="112.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal:">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Text layoutX="112.0" layoutY="668.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tax(10.25%):">
+      <Text fill="WHITE" layoutX="112.0" layoutY="668.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tax(10.25%):">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Text layoutX="112.0" layoutY="706.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
+      <Text fill="WHITE" layoutX="112.0" layoutY="706.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
          <font>
             <Font size="22.0" />
          </font>

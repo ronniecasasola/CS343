@@ -16,6 +16,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 
 /**
@@ -39,6 +46,8 @@ public class CustomerMenuController implements Initializable {
     private Button checkoutButton;
     @FXML
     private Button serverButton;
+    @FXML
+    private AnchorPane backgroundPane;
     
     private static Customer customer;
 
@@ -48,6 +57,12 @@ public class CustomerMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        //CREATES NEW BACKGROUND IMAGE
+        BackgroundImage myBG= new BackgroundImage(new Image("resources/bg.png"),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
+        //SETS BACKGROUND
+        backgroundPane.setBackground(new Background(myBG));
+        
         customer = WelcomeController.getCustomer(); //pass customer 
     }
 
