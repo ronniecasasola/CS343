@@ -299,6 +299,9 @@ public class EmployeeMenuController implements Initializable {
             super.updateItem(t, empty);
             if(!empty){
                 setGraphic(cellButton);
+            }else {
+        setText(null);
+        setGraphic(null);
             }
         }
     }
