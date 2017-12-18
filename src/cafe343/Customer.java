@@ -41,7 +41,7 @@ public class Customer
     {
         this.tableNumber = tableNumber;
         subTotal = 0;
-        status = "occupied";
+        status = "Occupied";
         orders = new ArrayList<MenuObject>(); 
         subTotal = 0;
         

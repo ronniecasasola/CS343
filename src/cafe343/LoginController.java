@@ -31,6 +31,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 
 /**
@@ -50,6 +56,9 @@ public class LoginController implements Initializable {
     private Button clearButton;
     @FXML
     private Button returnButton;
+    @FXML
+    private AnchorPane backgroundPane;
+    
 
     private HashMap credentials;
     private String IDnum;
@@ -62,7 +71,15 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+          //CREATES NEW BACKGROUND IMAGE
+        BackgroundImage myBG= new BackgroundImage(new Image("resources/bg2.png"),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
+        
+        //SETS BACKGROUND
+        backgroundPane.setBackground(new Background(myBG));
+        
         readFromFile();
+       
 
     }
 
@@ -125,13 +142,21 @@ public class LoginController implements Initializable {
                     window.show();
                 
             } else {
-                System.out.println("Invalid ID Number. ");
+                  //Showing Error Dialog.
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Incorrect Credentials");
+            errorAlert.setHeaderText("Id or Password field is incorrect");
+            errorAlert.setContentText("Please double check your login credentials and try again");
+            //Adding error_icon to Error Window.
+            Stage errorStage = (Stage) errorAlert.getDialogPane().getScene().getWindow();
+            errorStage.getIcons().add(new Image("resources/error_icon.png"));
+
+            errorAlert.showAndWait();
             }
-             }
+                
+            }
       
                     
-                    
-                
                 
                 
                   catch (SQLException e) {
