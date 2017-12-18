@@ -19,7 +19,7 @@
             <Font name="Britannic Bold" size="80.0" />
          </font>
       </Label>
-      <Button fx:id="customerButton" layoutX="169.0" layoutY="444.0" mnemonicParsing="false" onAction="#handleCustomerButtonAction" prefHeight="165.0" prefWidth="692.0" style="-fx-background-color: #99ccff;" text="Please tap here to continue" textAlignment="CENTER">
+      <Button fx:id="customerButton" layoutX="169.0" layoutY="531.0" mnemonicParsing="false" onAction="#handleCustomerButtonAction" prefHeight="165.0" prefWidth="692.0" style="-fx-background-color: #99ccff;" text="Please tap here to continue" textAlignment="CENTER">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" offsetX="3.0" offsetY="3.0" />
          </effect>
