@@ -30,5 +30,6 @@
       <Button fx:id="returnButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleReturnButton" prefHeight="50.0" prefWidth="150.0" text="Return" />
       <Button fx:id="orderHistoryButton" layoutX="437.0" layoutY="595.0" mnemonicParsing="false" onAction="#handleOrderHistoryButton" prefHeight="50.0" prefWidth="150.0" text="Order History" />
       <Button fx:id="serverButton" layoutX="860.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleServerButton" prefHeight="50.0" prefWidth="150.0" text="Server" />
+      <Label fx:id="tableNumberLabel" layoutX="478.0" layoutY="698.0" prefHeight="21.0" prefWidth="68.0" textFill="WHITE" />
    </children>
 </AnchorPane>

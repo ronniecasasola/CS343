@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -41,25 +42,37 @@ public class WelcomeController implements Initializable {
     private AnchorPane backgroundPane;
     
     private static Customer customer;
-    private int n = 0;
+    
+    private int tableNumber = 0;
+    @FXML
+    private Label titleLabel;
+    @FXML
+    private Label titleLabel1;
+    @FXML
+    private TextField tableNumberTextField;
+    @FXML
+    private Button addTableNumber;
+    @FXML
+    private Button subtractTableNumber;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //CREATES NEW BACKGROUND IMAGE
         BackgroundImage myBG= new BackgroundImage(new Image("resources/bg.png"),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
-        
         //SETS BACKGROUND
         backgroundPane.setBackground(new Background(myBG));
-        
         //SET ICON
         EmployeeButton.setGraphic(new ImageView(new Image("resources/employee_icon.png")));
+        
+        tableNumber = 1;
+        tableNumberTextField.setText(Integer.toString(tableNumber));
     }    
 
     @FXML
     private void handleCustomerButtonAction(ActionEvent event) throws IOException, ClassNotFoundException {
-        n+=1;
-        customer = new Customer(n);
+        //tableNumber+=1;
+        customer = new Customer(tableNumber);
         Parent customerMenuParent = FXMLLoader.load(getClass().getResource("CustomerMenu.fxml"));
         Scene customerMenuScene = new Scene(customerMenuParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -89,4 +102,21 @@ public class WelcomeController implements Initializable {
     {
         return customer;
     }
+
+    @FXML
+    private void handleAdd(ActionEvent event) {
+        EmployeeMenuController e = new EmployeeMenuController();       
+        if (tableNumber < 10){
+            tableNumber+=1;
+            tableNumberTextField.setText(Integer.toString(tableNumber));            
+        }
+    }
+
+    @FXML
+    private void handleSubtract(ActionEvent event) {
+        if (tableNumber > 1){
+            tableNumber-=1;
+            tableNumberTextField.setText(Integer.toString(tableNumber));
+        }
+    }    
 }

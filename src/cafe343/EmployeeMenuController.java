@@ -1,5 +1,6 @@
 package cafe343;
 
+import com.sun.prism.impl.Disposer;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -12,9 +13,12 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,6 +37,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -40,6 +45,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -59,18 +65,12 @@ public class EmployeeMenuController implements Initializable {
     private Image imageTableIcon = new Image("resources/table_icon.png");
 
      //**********ROOT TAB PANE**********
-    @FXML
     public TabPane tabPaneMainWindow;
     
     //**********MAIN PANEL TAB**********
     @FXML
     private GridPane gridPaneTables;
-    @FXML
     private Button buttonAddTable;
-    @FXML
-    private Button buttonDeleteTable;
-    @FXML
-    private Button buttonRefreshTable;
     @FXML
     private Button tabPaneSignOutButton;
     @FXML
@@ -90,7 +90,13 @@ public class EmployeeMenuController implements Initializable {
     //Column Index and Row Index for adding Buttons to GridPane.
     private int columnIndex = 0;
     private int rowIndex = 0;
+
+    @FXML
+    private TabPane tabPaneMainPanel;
+    
+
     private SplitMenuButton TableButtonArray[];
+
     /**
      * Initializes the controller class.
      */
@@ -111,7 +117,7 @@ public class EmployeeMenuController implements Initializable {
 
         //Initializing Main Panel Tab.
         
-        setButtonAddTable(buttonAddTable);
+        //setButtonAddTable(buttonAddTable);
         
         //Initializing Restaurant Menu Tab.
   
@@ -128,15 +134,6 @@ public class EmployeeMenuController implements Initializable {
         window.show();
     }
     
-    @FXML
-    private void handleAddTableButtonAction(ActionEvent event) {
-        
-    }
-    
-    @FXML
-    private void handleDeleteTableButtonAction(ActionEvent event) {
-        
-    }
 
     //Method used for adding Buttons(Tables) to GridPane.
     private void tableCreate(){
@@ -245,8 +242,65 @@ public class EmployeeMenuController implements Initializable {
         tableNumCol.setCellValueFactory(cellData -> cellData.getValue().getTableIDProperty().asObject());
         nameCol.setCellValueFactory(cellData -> cellData.getValue().getObjectNameProperty());
         orderNumCol.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty().asObject());
+        
+         //Insert Button
+        TableColumn col_action = new TableColumn<>("Action");
+        tableViewOrders.getColumns().add(col_action);
+        
+        col_action.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<Disposer.Record, Boolean>, 
+                ObservableValue<Boolean>>() {
+
+            @Override
+            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Disposer.Record, Boolean> p) {
+                return new SimpleBooleanProperty(p.getValue() != null);
+            }
+        });
+
+        //Adding the Button to the cell
+        col_action.setCellFactory(
+                new Callback<TableColumn<Disposer.Record, Boolean>, TableCell<Disposer.Record, Boolean>>() {
+
+            @Override
+            public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
+                return new ButtonCell();
+            }
+        
+        });
+        
         tableViewOrders.setItems(history);
         
+    }
+    
+     //Define the button cell
+    private class ButtonCell extends TableCell<Disposer.Record, Boolean> {
+        final Button cellButton = new Button("Delete");
+        
+        ButtonCell(){
+            
+        	//Action when the button is pressed
+            cellButton.setOnAction(new EventHandler<ActionEvent>(){
+
+                @Override
+                public void handle(ActionEvent t) {
+                    // get Selected Item
+                	CustomerOrder currentCustomer = (CustomerOrder) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
+                        int o = currentCustomer.getOrderIDProperty().intValue();
+                        deleteRowTable(o);
+                	//remove selected item from the table list
+                	history.remove(currentCustomer);
+                }
+            });
+        }
+
+        //Display button if the row is not empty
+        @Override
+        protected void updateItem(Boolean t, boolean empty) {
+            super.updateItem(t, empty);
+            if(!empty){
+                setGraphic(cellButton);
+            }
+        }
     }
 
     
@@ -336,5 +390,30 @@ public class EmployeeMenuController implements Initializable {
                 tableID++;
             }
         }
+    }
+    
+        private void deleteRowTable(int o) { //throws ClassNotFoundException{
+        int o1 = o;
+        try {
+                //Connecting with database.
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
+                Connection connection = DriverManager.getConnection( DatabaseConnection.DB_URL );
+                Statement statement = connection.createStatement();
+                //Creates a query
+                statement.executeUpdate("Delete From CUSTOMERORDER Where ORDERID =" + o1);
+               
+// if(resultSet.next()){
+                 //   tableCount = resultSet.getInt("total");
+                   // System.out.println(tableCount);
+                //}
+                
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        catch(ClassNotFoundException f){
+            f.printStackTrace();
+        }
+
     }
 }

@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -48,13 +49,13 @@ public class CustomerMenuController implements Initializable {
     @FXML
     private Button orderHistoryButton;
     @FXML
-    private Button checkoutButton;
-    @FXML
     private Button serverButton;
     @FXML
     private AnchorPane backgroundPane;
     
     private static Customer customer;
+    @FXML
+    private Label tableNumberLabel;
 
     /**
      * Initializes the controller class.
@@ -69,6 +70,9 @@ public class CustomerMenuController implements Initializable {
         backgroundPane.setBackground(new Background(myBG));
         
         customer = WelcomeController.getCustomer(); //pass customer 
+        
+        tableNumberLabel.setText("Table: " + customer.getTableNumber());
+
     }
 
     
@@ -186,5 +190,4 @@ public class CustomerMenuController implements Initializable {
                 e.printStackTrace();
             }
     }
-
 }

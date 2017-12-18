@@ -40,60 +40,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <Button fx:id="buttonAddTable" layoutX="613.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleAddTableButtonAction" prefHeight="50" prefWidth="75" text="+">
-                     <font>
-                        <Font name="System Bold" size="32.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="buttonDeleteTable" layoutX="729.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleDeleteTableButtonAction" prefHeight="50.0" prefWidth="75.0" text="-">
-                     <font>
-                        <Font name="System Bold" size="32.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="buttonRefreshTable" layoutX="834.0" layoutY="31.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Button>
                   <Button fx:id="tabPaneSignOutButton" layoutX="30.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleSignOutButtonAction" prefHeight="54.0" prefWidth="132.0" text="Sign Out" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="Payments">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="342.0" layoutY="42.0" prefHeight="47.0" prefWidth="340.0" text="Customer Payments" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="342.0" AnchorPane.topAnchor="42.0">
-                     <font>
-                        <Font name="System Regular" size="32.0" />
-                     </font>
-                  </Label>
-                  <TableView fx:id="tableViewJobs1" layoutX="83.0" layoutY="125.0" prefHeight="500.0" prefWidth="859.0">
-                     <columns>
-                        <TableColumn prefWidth="105.0" text="Table">
-                           <cellValueFactory>
-                              <PropertyValueFactory property="jobNameProperty" />
-                           </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="122.33331298828125" text="Type" />
-                        <TableColumn minWidth="0.0" prefWidth="173.0" text="Menu Item">
-                           <cellValueFactory>
-                              <PropertyValueFactory property="jobSalaryProperty" />
-                           </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="172.66668701171875" text="Amount">
-                           <cellValueFactory>
-                              <PropertyValueFactory property="jobDepartmentProperty" />
-                           </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="283.33331298828125" text="Status">
-                           <cellValueFactory>
-                              <PropertyValueFactory property="jobDepartmentProperty" />
-                           </cellValueFactory>
-                        </TableColumn>
-                     </columns>
-                  </TableView>
                </children>
             </AnchorPane>
          </content>
@@ -107,15 +54,15 @@
                         <Font name="System Regular" size="32.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tableViewOrders" layoutX="152.0" layoutY="120.0" prefHeight="516.0" prefWidth="721.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="151.0" AnchorPane.topAnchor="120.0">
+                  <TableView fx:id="tableViewOrders" layoutX="21.0" layoutY="92.0" prefHeight="559.0" prefWidth="965.0" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="92.0">
                      <columns>
-                        <TableColumn fx:id="tableNumCol" prefWidth="164.33331298828125" text="Table Number">
+                        <TableColumn fx:id="tableNumCol" prefWidth="141.0" text="Table Number">
                            <cellValueFactory>
                               <PropertyValueFactory property="jobNameProperty" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="orderNumCol" prefWidth="164.6666259765625" text="Order Number" />
-                        <TableColumn fx:id="nameCol" minWidth="0.0" prefWidth="391.66668701171875" text="Menu Item">
+                        <TableColumn fx:id="orderNumCol" prefWidth="140.0" text="Order Number" />
+                        <TableColumn fx:id="nameCol" minWidth="0.0" prefWidth="422.0" text="Menu Item">
                            <cellValueFactory>
                               <PropertyValueFactory property="jobSalaryProperty" />
                            </cellValueFactory>

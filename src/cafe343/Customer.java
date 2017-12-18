@@ -65,6 +65,10 @@ public class Customer
         return tableNumber;
     }
     
+    public void setTableNumber(int t) {
+        tableNumber = t;
+    }
+    
     public void makeOrder(MenuObject item) throws ClassNotFoundException
     {
         subTotal += item.getMenuObjectPriceProperty();
