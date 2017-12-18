@@ -104,8 +104,7 @@ public class Customer
     
     public double splitByPeople(int numberOfPeople)
     {
-        return total*1.1025/numberOfPeople;
-
+        return total/numberOfPeople;
     }
     
     public int callServer()

@@ -21,7 +21,14 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 
 /**
@@ -41,13 +48,14 @@ public class CheckOutController implements Initializable {
     private Button splitItemButton;
     @FXML
     private Button feedbackButton;
-    
     @FXML
     private TextField numberOfPeopleTextField;
     @FXML 
     private TextArea output;
     @FXML
     private TextArea total;
+    @FXML
+    private AnchorPane backgroundPane;
     
     private static Customer customer;
     
@@ -60,6 +68,12 @@ public class CheckOutController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //CREATES NEW BACKGROUND IMAGE
+        BackgroundImage myBG= new BackgroundImage(new Image("resources/bg.png"),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
+        //SETS BACKGROUND
+        backgroundPane.setBackground(new Background(myBG));
+        
         customer = WelcomeController.getCustomer();
         numberOfPeople = 1;
         numberOfPeopleTextField.setText(Integer.toString(numberOfPeople));

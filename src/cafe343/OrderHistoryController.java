@@ -27,6 +27,13 @@ import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 
 /**
  * FXML Controller class
@@ -55,6 +62,8 @@ public class OrderHistoryController implements Initializable {
     private TextArea tax;
     @FXML
     private TextArea total;
+    @FXML
+    private AnchorPane backgroundPane;
     
     private static Customer customer;
     
@@ -66,6 +75,11 @@ public class OrderHistoryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        //CREATES NEW BACKGROUND IMAGE
+        BackgroundImage myBG= new BackgroundImage(new Image("resources/bg.png"),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
+        //SETS BACKGROUND
+        backgroundPane.setBackground(new Background(myBG));
         
         customer = WelcomeController.getCustomer();
         

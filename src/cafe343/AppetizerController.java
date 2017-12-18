@@ -43,6 +43,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -63,6 +69,8 @@ public class AppetizerController implements Initializable {
     private GridPane gridPaneTables;
      @FXML
     private TextArea CustomerMenuAppetizersDescriptionProperty;
+    @FXML
+    private AnchorPane backgroundPane;
      
     private static ArrayList<MenuObject> menuObjectList;
     private ArrayList<Image> listOfImages;
@@ -217,6 +225,13 @@ public class AppetizerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //CREATES NEW BACKGROUND IMAGE
+        BackgroundImage myBG= new BackgroundImage(new Image("resources/bg.png"),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
+        
+        //SETS BACKGROUND
+        backgroundPane.setBackground(new Background(myBG));
+        
         appetizersRefresh();
         customer = WelcomeController.getCustomer();
     }  
