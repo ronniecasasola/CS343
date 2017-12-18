@@ -9,12 +9,12 @@
 
 <AnchorPane id="AnchorPane" fx:id="backgroundPane" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe343.WelcomeController">
    <children>
-      <Label fx:id="titleLabel" layoutX="177.0" layoutY="104.0" prefHeight="189.0" prefWidth="688.0" text="Welcome to Cafe343" textAlignment="CENTER">
+      <Label fx:id="titleLabel" layoutX="143.0" layoutY="114.0" prefHeight="186.0" prefWidth="755.0" text="Welcome to Cafe343" textAlignment="CENTER">
          <font>
-            <Font name="Britannic Bold" size="72.0" />
+            <Font name="Britannic Bold" size="80.0" />
          </font>
       </Label>
-      <Button fx:id="customerButton" layoutX="166.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleCustomerButtonAction" prefHeight="165.0" prefWidth="692.0" style="-fx-background-color: #99ccff;" text="Click Here to Continue" textAlignment="CENTER">
+      <Button fx:id="customerButton" layoutX="169.0" layoutY="444.0" mnemonicParsing="false" onAction="#handleCustomerButtonAction" prefHeight="165.0" prefWidth="692.0" style="-fx-background-color: #99ccff;" text="Please tap here to continue" textAlignment="CENTER">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" offsetX="3.0" offsetY="3.0" />
          </effect>
@@ -22,7 +22,7 @@
             <Font size="48.0" />
          </font>
       </Button>
-      <Label fx:id="titleLabel1" layoutX="371.0" layoutY="293.0" prefHeight="66.0" prefWidth="300.0" text="Come relax and take a load off  :-)" textAlignment="CENTER">
+      <Label fx:id="titleLabel1" layoutX="368.0" layoutY="318.0" prefHeight="66.0" prefWidth="342.0" text="We don't actually serve cafe food" textAlignment="CENTER">
          <font>
             <Font name="Monotype Corsiva" size="24.0" />
          </font>

@@ -22,6 +22,13 @@ import java.util.Date;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 
 /**
@@ -43,11 +50,21 @@ public class FeedbackController implements Initializable {
     private Button submitButton;
     
     @FXML
+    private AnchorPane backgroundPane;
+    
+    @FXML
     private Button returnButton;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         customer = WelcomeController.getCustomer();
+        
+        //CREATES NEW BACKGROUND IMAGE
+        BackgroundImage myBG= new BackgroundImage(new Image("resources/bg.png"),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
+        
+        //SETS BACKGROUND
+        backgroundPane.setBackground(new Background(myBG));
     }    
     
     /**
