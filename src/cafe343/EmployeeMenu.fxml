@@ -53,7 +53,7 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab text="Kitchen View">
+      <Tab text="Kitchen">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -62,15 +62,15 @@
                         <Font name="System Regular" size="32.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tableViewOrders" layoutX="152.0" layoutY="120.0" prefHeight="516.0" prefWidth="721.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="151.0" AnchorPane.topAnchor="120.0">
+                  <TableView fx:id="tableViewOrders" layoutX="21.0" layoutY="92.0" prefHeight="559.0" prefWidth="965.0" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="92.0">
                      <columns>
-                        <TableColumn fx:id="tableNumCol" prefWidth="164.33331298828125" text="Table Number">
+                        <TableColumn fx:id="tableNumCol" prefWidth="141.0" text="Table Number">
                            <cellValueFactory>
                               <PropertyValueFactory property="jobNameProperty" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="orderNumCol" prefWidth="164.6666259765625" text="Order Number" />
-                        <TableColumn fx:id="nameCol" minWidth="0.0" prefWidth="391.66668701171875" text="Menu Item">
+                        <TableColumn fx:id="orderNumCol" prefWidth="140.0" text="Order Number" />
+                        <TableColumn fx:id="nameCol" minWidth="0.0" prefWidth="422.0" text="Menu Item">
                            <cellValueFactory>
                               <PropertyValueFactory property="jobSalaryProperty" />
                            </cellValueFactory>
