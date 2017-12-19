@@ -102,6 +102,8 @@ public class EmployeeMenuController implements Initializable {
     private String blue;
     
     private ArrayList<SplitMenuButton> TableButtonArray; //Stores Table Menu Objects
+    @FXML
+    private Button kitchenRefresh;
     /**
      * Initializes the controller class.
      */
@@ -196,6 +198,17 @@ public class EmployeeMenuController implements Initializable {
         
         tableViewOrders.setItems(history);
         
+    }
+
+    @FXML
+    private void handleKitchenRefresh(ActionEvent event) throws IOException {
+        Parent Parent = FXMLLoader.load(getClass().getResource("EmployeeMenu.fxml"));
+        Scene nextScene = new Scene(Parent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setResizable(false);
+        window.setScene(nextScene);
+        window.setTitle("Check Out");
+        window.show();
     }
     
      //Define the button cell
