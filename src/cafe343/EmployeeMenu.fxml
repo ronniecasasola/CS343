@@ -15,13 +15,13 @@
 
 <TabPane fx:id="tabPaneMainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" tabMinHeight="50" tabMinWidth="199" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe343.EmployeeMenuController">
    <tabs>
-      <Tab text="Main Panel">
+      <Tab text="Table View">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="467.0" layoutY="42.0" text="Tables" textAlignment="CENTER" AnchorPane.rightAnchor="467.0" AnchorPane.topAnchor="42.0">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutY="31.0" prefHeight="47.0" prefWidth="227.0" text="Table List" textAlignment="CENTER" AnchorPane.rightAnchor="797.0" AnchorPane.topAnchor="31.0">
                      <font>
-                        <Font name="System Regular" size="32.0" />
+                        <Font name="Segoe UI Light" size="32.0" />
                      </font>
                   </Label>
                   <GridPane fx:id="gridPaneTables" hgap="15" layoutX="87.0" layoutY="114.0" prefHeight="497.0" prefWidth="850.0" vgap="15" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="114.0">
@@ -40,12 +40,20 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <Button fx:id="tabPaneSignOutButton" layoutX="30.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleSignOutButtonAction" prefHeight="54.0" prefWidth="132.0" text="Sign Out" />
+                  <Button fx:id="refreshButton" layoutX="481.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="69.0" prefWidth="209.0" text="Refresh">
+                     <font>
+                        <Font name="Segoe UI Black" size="32.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="tabPaneSignOutButton" layoutX="736.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleSignOutButtonAction" prefHeight="69.0" prefWidth="191.0" text="Sign-out">
+                     <font>
+                        <Font name="Segoe UI Black" size="32.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
          </content>
       </Tab>
-      <Tab text="Kitchen">
+      <Tab text="Kitchen View">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -54,15 +62,15 @@
                         <Font name="System Regular" size="32.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tableViewOrders" layoutX="21.0" layoutY="92.0" prefHeight="559.0" prefWidth="965.0" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="92.0">
+                  <TableView fx:id="tableViewOrders" layoutX="152.0" layoutY="120.0" prefHeight="516.0" prefWidth="721.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="151.0" AnchorPane.topAnchor="120.0">
                      <columns>
-                        <TableColumn fx:id="tableNumCol" prefWidth="141.0" text="Table Number">
+                        <TableColumn fx:id="tableNumCol" prefWidth="164.33331298828125" text="Table Number">
                            <cellValueFactory>
                               <PropertyValueFactory property="jobNameProperty" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="orderNumCol" prefWidth="140.0" text="Order Number" />
-                        <TableColumn fx:id="nameCol" minWidth="0.0" prefWidth="422.0" text="Menu Item">
+                        <TableColumn fx:id="orderNumCol" prefWidth="164.6666259765625" text="Order Number" />
+                        <TableColumn fx:id="nameCol" minWidth="0.0" prefWidth="391.66668701171875" text="Menu Item">
                            <cellValueFactory>
                               <PropertyValueFactory property="jobSalaryProperty" />
                            </cellValueFactory>
