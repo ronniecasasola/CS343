@@ -33,6 +33,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <TextArea fx:id="CustomerMenuEntreeDescriptionProperty" layoutX="216.0" layoutY="663.0" prefHeight="91.0" prefWidth="613.0" wrapText="true" />
+      <TextArea fx:id="CustomerMenuEntreeDescriptionProperty" layoutX="216.0" layoutY="663.0" prefHeight="91.0" prefWidth="613.0" wrapText="true">
+         <font>
+            <Font size="20.0" />
+         </font></TextArea>
    </children>
 </AnchorPane>
