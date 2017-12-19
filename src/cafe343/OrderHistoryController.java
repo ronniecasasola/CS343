@@ -7,6 +7,10 @@ package cafe343;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
@@ -26,6 +30,7 @@ import javafx.stage.Stage;
 import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -125,9 +130,32 @@ public class OrderHistoryController implements Initializable {
     }
     
     @FXML
-    private void handleServerButton(ActionEvent event) 
+    private void handleServerButton(ActionEvent event) throws ClassNotFoundException 
     {
-        
+        Alert errorAlert = new Alert(Alert.AlertType.INFORMATION);
+            errorAlert.setTitle("Calling Server");
+            errorAlert.setHeaderText("Please wait a moment");
+            errorAlert.setContentText("A server will arrive to assist you soon");
+            //Adding error_icon to Error Window.
+            Stage errorStage = (Stage) errorAlert.getDialogPane().getScene().getWindow();
+            errorStage.getIcons().add(new Image("resources/error_icon.png"));
+            errorAlert.showAndWait();
+            
+            String status = "Alert";
+            
+            try {
+                //Connecting with database.
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
+                Connection connection = DriverManager.getConnection( DatabaseConnection.DB_URL );
+                Statement statement = connection.createStatement();
+
+                statement.executeUpdate("UPDATE CustomerTable SET tablestatus = " + "'" + status + "'" + " where tableID = " + customer.getTableNumber());
+            
+            statement.close();
+            connection.close();
+             }catch (SQLException e) {
+                e.printStackTrace();
+            }
     }
     
 }
