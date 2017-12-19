@@ -155,10 +155,7 @@ public class LoginController implements Initializable {
             }
                 
             }
-      
-                    
-                
-                
+   
                   catch (SQLException e) {
                 e.printStackTrace();
             }

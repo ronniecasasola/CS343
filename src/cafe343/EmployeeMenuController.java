@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -65,14 +66,13 @@ public class EmployeeMenuController implements Initializable {
     //**********MAIN PANEL TAB**********
     @FXML
     private GridPane gridPaneTables;
+    
     @FXML
-    private Button buttonAddTable;
-    @FXML
-    private Button buttonDeleteTable;
-    @FXML
-    private Button buttonRefreshTable;
+    private Button refreshButton;
+
     @FXML
     private Button tabPaneSignOutButton;
+    
     @FXML
     private TableView tableViewOrders;
     
@@ -85,21 +85,29 @@ public class EmployeeMenuController implements Initializable {
     
     private ObservableList<CustomerOrder> history = FXCollections.observableArrayList();
     //Table ID for Buttons.
-    private int tableID = 1;
+    private int tableID = 1; //Used only for iteration
     private int tableCount;
     //Column Index and Row Index for adding Buttons to GridPane.
     private int columnIndex = 0;
     private int rowIndex = 0;
-    private SplitMenuButton TableButtonArray[];
+    private String green;
+    private String red;
+    private String blue;
+    
+    private ArrayList<SplitMenuButton> TableButtonArray; //Stores Table Menu Objects
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        TableButtonArray = new SplitMenuButton[11]; //Initializes an array of tables
-       
-        //Calling refresh to all tables at start.
+        TableButtonArray = new ArrayList<SplitMenuButton>(11); //Initializes an arraylist of tables
+        TableButtonArray.add(null); //Zero Index is null
         
+        green = "-fx-background-color:#7CFC00;";
+        red = "-fx-background-color:#FF0000;";
+        blue = "-fx-background-color:#0066cc;";
+        //Calling a refresh to all tables at the start.
         try {
             orderRefresh();
             listTable();
@@ -108,12 +116,7 @@ public class EmployeeMenuController implements Initializable {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(EmployeeMenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //Initializing Main Panel Tab.
         
-        setButtonAddTable(buttonAddTable);
-        
-        //Initializing Restaurant Menu Tab.
   
     } 
     
@@ -128,93 +131,48 @@ public class EmployeeMenuController implements Initializable {
         window.show();
     }
     
+    /**
+     * Repeatable RefreshButton to check the status of tables
+     * @param event 
+     */
     @FXML
-    private void handleAddTableButtonAction(ActionEvent event) {
-        
-    }
-    
-    @FXML
-    private void handleDeleteTableButtonAction(ActionEvent event) {
-        
-    }
-
-    //Method used for adding Buttons(Tables) to GridPane.
-    private void tableCreate(){
-
-        //Checking the columnIndex initially to see if it equals to the limit.
-        if (columnIndex == gridPaneTables.getColumnConstraints().size()){
-            if (rowIndex < gridPaneTables.getRowConstraints().size() - 1){
-                //Resetting the columnIndex and incrementing rowIndex.
-                columnIndex = 0;
-                rowIndex++;
-            }
-        }
-        //Checking ColumnConstraints and RowConstraints before adding any Tables.
-        if (columnIndex <= gridPaneTables.getColumnConstraints().size() - 1
-                && rowIndex <= gridPaneTables.getRowConstraints().size() - 1){
-
-            //Menu Items for Split Menu Button
-            MenuItem menuObjectSetAvailable = new MenuItem("Set Available");
-            MenuItem menuObjectSetOccupied = new MenuItem("Set Occupied");
-            MenuItem menuObjectSetBooked = new MenuItem("Server Call Received");
-
-            //Initializing Button for GridPane.
-            final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuObjectSetAvailable,
-                                                                    menuObjectSetOccupied, menuObjectSetBooked);
-            //Setting appearance of the table buttons.
-            splitMenuButtonTable.setText("Table " + tableID);
-            splitMenuButtonTable.setGraphic(new ImageView(imageTableIcon));
-            splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;");
-            //Setting Button's Text as TABLE_ID from database.
-            splitMenuButtonTable.setId(String.valueOf(tableID));
-            //Setting Button's size to MAX for forcing it to fit GridPane cells.
-            splitMenuButtonTable.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
-            //Sets the Icon on top of the text.
-            splitMenuButtonTable.setContentDisplay(ContentDisplay.TOP);
-
-
-            splitMenuButtonTable.setOnAction(event -> {
-                //Order TableID
-                String tableID = splitMenuButtonTable.getId();
+    private void handleRefresh(ActionEvent event) throws ClassNotFoundException {
+        try {
+                //Connecting with database.
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
+                Connection connection = DriverManager.getConnection( DatabaseConnection.DB_URL );
+                Statement statement = connection.createStatement();
+                ResultSet resultSet;
                 
-            });
+                for(int i=1; i < tableCount; i++){
+                    resultSet = statement.executeQuery("SELECT TableID AS ID, TableStatus AS status from CustomerTable WHERE TableID = " + i);
+
+                    if(resultSet.next()){
+                        String newStatus = resultSet.getString("status");
+                        if(newStatus.equals("Available")){
+                            TableButtonArray.get(resultSet.getInt("ID")).setStyle(green);
+                        }
+                        else if(newStatus.equals("Occupied")){
+                            TableButtonArray.get(resultSet.getInt("ID")).setStyle(red);
+                        }
+                        else if(newStatus.equals("Alert")){
+                            TableButtonArray.get(resultSet.getInt("ID")).setStyle(blue);
+                        }
+                        
+                    }
+                }
+                               
+              //  statement.executeUpdate("UPDATE CustomerTable SET tablestatus = " + "'" + status + "'" + " where tableID = " + customer.getTableNumber());
             
-            //Addorder was redacted here
+            statement.close();
+            connection.close();
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
 
-            menuObjectSetAvailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;"));
-            menuObjectSetOccupied.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
-            menuObjectSetBooked.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FFFF00;"));
-
-            //Adding the created Button to GridPane and incrementing columnIndex.
-            gridPaneTables.add(splitMenuButtonTable,columnIndex,rowIndex);
-            columnIndex++;
-
-            //Calling createTable Method to add created table to database by using tableID.
-            Table.createTable(tableID);
-            //Incrementing tableID after the add process in order to synchronize with TABLE_ID column from database.
-            tableID++;
-
-        } else {
-
-            //Showing Error Dialog.
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Error");
-            errorAlert.setHeaderText("Error: You can't add more tables.");
-            errorAlert.setContentText("You have reached the maximum number of tables." +
-                    " You can't add more tables to the panel.");
-            //Adding error_icon to Error Window.
-            Stage errorStage = (Stage) errorAlert.getDialogPane().getScene().getWindow();
-            errorStage.getIcons().add(new Image("resources/error_icon.png"));
-            errorAlert.showAndWait();
-        }
     }
 
-    //Setting buttonAddTable with tableCreate Method.
-    private void setButtonAddTable(Button buttonAddTable) {
-        buttonAddTable.setOnAction(event -> tableCreate());
-        this.buttonAddTable = buttonAddTable;
-    }
-    
     /**
      * Updates the data of orders input from the customer side program
      * @throws ClassNotFoundException 
@@ -276,16 +234,15 @@ public class EmployeeMenuController implements Initializable {
         }
 
     }
-
-    
     
     /**
      * Updates the amount of tables based on the value from the Tables class
      */
-    private void tableRefresh(){
+    private void tableRefresh() throws ClassNotFoundException{
+        
         //Add Tables until tableID is equal to the number of available tables
         while (tableID <= tableCount){
-
+           
             //Checks the columns initially to see if it is equal to the max
             if (columnIndex == gridPaneTables.getColumnConstraints().size()){
                 if (rowIndex < gridPaneTables.getRowConstraints().size() - 1){
@@ -300,41 +257,133 @@ public class EmployeeMenuController implements Initializable {
 
                 //Menu Items for Split Menu Button
                 MenuItem menuObjectSetAvailable = new MenuItem("Set Available");
-                MenuItem menuObjectSetOccupied = new MenuItem("Occupied");
-                MenuItem menuObjectSetAlert = new MenuItem("Server Call Received");
+                MenuItem menuObjectSetOccupied = new MenuItem("Set Occupied");
+                MenuItem menuObjectSetAlert = new MenuItem("Server Called");
                 
                 //Initializing Button for GridPane.
                 final SplitMenuButton splitMenuButtonTable = new SplitMenuButton(menuObjectSetAvailable,
                                                                                 menuObjectSetOccupied, menuObjectSetAlert);
+               
+
                 //Setting appearance of the table buttons.
                 splitMenuButtonTable.setText("Table " + tableID);
                 splitMenuButtonTable.setGraphic(new ImageView(imageTableIcon));
                 splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;");
-                //Setting Button's Text as TABLE_ID from database.
-                splitMenuButtonTable.setId(String.valueOf(tableID));
+              
                 
-                //Setting Button's size to MAX for forcing it to fit GridPane cells.
-                splitMenuButtonTable.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
-                //Sets the Icon on top of the text.
-                splitMenuButtonTable.setContentDisplay(ContentDisplay.TOP);
-
-                splitMenuButtonTable.setOnAction(event -> {
-                    //Order TableID
-                    String tableID = splitMenuButtonTable.getId();
-                   
-                });
+                try { //DATABASE CHECK THE STATUS OF TABLES AND CHANGE COLORS
+                    //Connecting with database.
+                    Class.forName("org.apache.derby.jdbc.ClientDriver");
+                    Connection connection = DriverManager.getConnection( DatabaseConnection.DB_URL );
+                    Statement statement = connection.createStatement();
+                    ResultSet resultSet;
+                    resultSet = statement.executeQuery("SELECT TableID AS ID, TableStatus AS status from CustomerTable WHERE TableID = " + tableID);
+                    String newStatus;
                 
-                menuObjectSetAvailable.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#7CFC00;"));
-                menuObjectSetOccupied.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FF0000;"));
-                menuObjectSetAlert.setOnAction(event -> splitMenuButtonTable.setStyle("-fx-background-color:#FFFF00;"));
+                    if(resultSet.next()){
+                        newStatus = resultSet.getString("status");
+                        if(newStatus.equals("Available")){
+                            splitMenuButtonTable.setStyle(green);
+                        }
+                        else if(newStatus.equals("Occupied")){
+                            splitMenuButtonTable.setStyle(red);
+                        }
+                        else if(newStatus.equals("Alert")){
+                            splitMenuButtonTable.setStyle(blue);
+                        }
+                        
+                    }
 
-                //Adding the created Button to GridPane and incrementing columnIndex.
-                gridPaneTables.add(splitMenuButtonTable, columnIndex, rowIndex);
-                columnIndex++;
 
-                //Incrementing tableID after the add process in order to synchronize with TABLE_ID column from database.
-                tableID++;
-            }
+                  //Setting Button's Text as TABLE_ID from database.
+                  splitMenuButtonTable.setId(String.valueOf(tableID));
+
+                  //Setting Button's size to MAX for forcing it to fit GridPane cells.
+                  splitMenuButtonTable.setMaxSize(Double.MAX_VALUE,Double.MAX_VALUE);
+                  //Sets the Icon on top of the text.
+                  splitMenuButtonTable.setContentDisplay(ContentDisplay.TOP);
+
+                  splitMenuButtonTable.setOnAction(event -> {
+                      //Order TableID
+                      String tableID = splitMenuButtonTable.getId();
+
+                  });
+                
+                  menuObjectSetAvailable.setOnAction(event -> {
+                        try {
+                            setStyle(green, splitMenuButtonTable);
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(EmployeeMenuController.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(EmployeeMenuController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    });
+                  menuObjectSetOccupied.setOnAction(event -> {
+                        try {
+                            setStyle(red,splitMenuButtonTable);
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(EmployeeMenuController.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(EmployeeMenuController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    });
+                  menuObjectSetAlert.setOnAction(event -> {
+                        try {
+                            setStyle(blue,splitMenuButtonTable);
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(EmployeeMenuController.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(EmployeeMenuController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    });
+
+                  //Adding the created Button to GridPane and incrementing columnIndex.
+                  gridPaneTables.add(splitMenuButtonTable, columnIndex, rowIndex);
+                  columnIndex++;
+
+                  TableButtonArray.add(splitMenuButtonTable); //ADDS Menubutton to Table Button Array
+                  //Incrementing tableID after the add process in order to synchronize with TABLE_ID column from database.
+                  
+                  statement.close();
+                  connection.close();
+                }
+                catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("FAILED SQL STATEMENTS");
+                }
+
+            }  tableID++;
         }
+       
     }
+    
+    private void setStyle(String color, SplitMenuButton table) throws ClassNotFoundException, SQLException{
+           Class.forName("org.apache.derby.jdbc.ClientDriver");
+           Connection connection = DriverManager.getConnection( DatabaseConnection.DB_URL );
+           Statement statement = connection.createStatement();
+            String status;
+                  
+                        if(color.equals(green)){
+                            table.setStyle(green);
+                            status = "Available";
+                            statement.executeUpdate("UPDATE CustomerTable SET tablestatus = " + "'" + status + "'" + " where tableID = " + TableButtonArray.indexOf(table));
+                        }
+                        else if(color.equals(red)){
+                            table.setStyle(red);
+                            status = "Occupied";
+                            statement.executeUpdate("UPDATE CustomerTable SET tablestatus = " + "'" + status + "'" + " where tableID = " + TableButtonArray.indexOf(table));
+                        }
+                        else if(color.equals(blue)){
+                            table.setStyle(blue);
+                            status = "Alert";
+                            statement.executeUpdate("UPDATE CustomerTable SET tablestatus = " + "'" + status + "'" + " where tableID = " + TableButtonArray.indexOf(table));
+                        }
+            statement.close();
+            connection.close();
+                        
+    }
+    
+    
+    
+    
 }
